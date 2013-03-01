@@ -9,6 +9,7 @@ Then just run the program as normal Java file, and it will create HTML pages for
 
 TODO
 ====
+* Sort blog posts by git date or metadata date
 * Specify blog url from the command line
 * Specify where to put the output html post files
 * Remove .md ffrom output html filename
