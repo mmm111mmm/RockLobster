@@ -10,7 +10,10 @@ Then just run the program as normal Java file, and it will create HTML pages for
 TODO
 ====
 * Specify blog url from the command line
+* Specify where to put the output html post files
+* Remove .md ffrom output html filename
 * Optional template files found in CWD to use.
 * Plugins 
+* How to do pagination from index files and possibly others
 * Generate index file - maybe via plugin on a template file?
 * Optional config, such a files per page on the index page - maybe via plugins?
