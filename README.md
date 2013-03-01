@@ -16,6 +16,5 @@ TODO
 * Optional template files found in CWD to use.
 * Ant build.xml / Gradle? - sod Eclipse
 * Plugins 
-* How to do pagination from index files and possibly others
-* Generate index file - maybe via plugin on a template file?
-* Optional config, such a files per page on the index page - maybe via plugins?
+* How to do pagination in index files and possibly others
+  * Via a plugin? Metadata in filename - index.5.pages.template?
