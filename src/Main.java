@@ -15,16 +15,19 @@ public class Main {
 	
 	private static  String URL_REMOTE_REPO; //i.e "git@github.com:denevell/BlogPosts.git";
 	private static final String DIR_LOCAL_REPO = "git-repo";
+	public static String sOutputDir = "";
 	public static Repository sFileGitRepo;
 
 	/**
 	 * Welcome to the post procedural Java program I've ever written
 	 */
 	public static void main(String[] s) throws Exception {
+		// Set up vars
 		URL_REMOTE_REPO = s[0];
+		if(s.lengh>1) sOutputDir = s[1];
 		String absolutePath = new File(DIR_LOCAL_REPO).getAbsolutePath(); // For location of files
 		sFileGitRepo = new FileRepository(absolutePath+"/.git"); // To refereces our git repo
-		
+		// Blog things up
 		GitUtils.cloneOrPullExistingRepository(URL_REMOTE_REPO, sFileGitRepo); 
 		ArrayList<BlogPost> bps = BlogPostParsing.parseFilesInDirectory(absolutePath);
 		BlogMarkdownUtils.convertMDToHTML(bps);
