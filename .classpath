@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.6"/>
+	<classpathentry kind="lib" path="lib/asm-4.1.jar"/>
+	<classpathentry kind="lib" path="lib/asm-analysis-4.1.jar"/>
+	<classpathentry kind="lib" path="lib/asm-tree-4.1.jar"/>
+	<classpathentry kind="lib" path="lib/asm-util-4.1.jar"/>
+	<classpathentry kind="lib" path="lib/compiler-0.8.10.jar"/>
+	<classpathentry kind="lib" path="lib/parboiled-core-1.1.4.jar"/>
+	<classpathentry kind="lib" path="lib/parboiled-java-1.1.4.jar"/>
+	<classpathentry kind="lib" path="lib/pegdown-1.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/jsch-0.1.44-1.jar"/>
+	<classpathentry kind="lib" path="lib/org.eclipse.jgit-2.2.0.201212191850-r.jar"/>
+	<classpathentry kind="lib" path="lib/guava-13.0.1.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
