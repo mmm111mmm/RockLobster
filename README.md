@@ -11,8 +11,8 @@ TODO
 ====
 * Sort blog posts by git date or metadata date
 * ~~Specify blog url from the command line~~
-* Specify where to put the output html post files
-* Remove .md ffrom output html filename
+* ~~Specify where to put the output html post files~~
+* Remove .md from output html filename
 * Optional template files found in CWD to use.
 * Ant build.xml / Gradle? - sod Eclipse
 * Plugins 
