@@ -13,6 +13,7 @@ TODO
 * Specify where to put the output html post files
 * Remove .md ffrom output html filename
 * Optional template files found in CWD to use.
+* Ant build.xml - sod Eclipse
 * Plugins 
 * How to do pagination from index files and possibly others
 * Generate index file - maybe via plugin on a template file?
