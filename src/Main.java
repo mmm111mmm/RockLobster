@@ -13,7 +13,7 @@ import entities.Page;
 
 public class Main {
 	
-	private static final String URL_REMOTE_REPO = "git@github.com:denevell/BlogPosts.git";
+	private static  String URL_REMOTE_REPO; //i.e "git@github.com:denevell/BlogPosts.git";
 	private static final String DIR_LOCAL_REPO = "git-repo";
 	public static Repository sFileGitRepo;
 
@@ -21,6 +21,7 @@ public class Main {
 	 * Welcome to the post procedural Java program I've ever written
 	 */
 	public static void main(String[] s) throws Exception {
+		URL_REMOTE_REPO = s[0];
 		String absolutePath = new File(DIR_LOCAL_REPO).getAbsolutePath(); // For location of files
 		sFileGitRepo = new FileRepository(absolutePath+"/.git"); // To refereces our git repo
 		
