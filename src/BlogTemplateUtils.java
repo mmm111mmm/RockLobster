@@ -71,10 +71,7 @@ public class BlogTemplateUtils {
 		for(int currentPage = 1;((currentPage-1)*paginationSize)<bps.size();currentPage++) {
 			// Apply the template to this series of posts
 			List<BlogPost> subList = getSublistForPagination(bps, paginationSize, currentPage);
-			HashMap<String, Object> scopes = new HashMap<String, Object>();
-			scopes.put("posts", subList);
-			scopes.put("num_pages_total", totalPages);
-		    scopes.put("num_pages_current", String.valueOf(currentPage));
+			HashMap<String, Object> scopes = setScopeForPagination(totalPages, currentPage, subList, relativeFileName);
 		    StringWriter writer = new StringWriter();	    
 		    mustache.execute(writer, scopes);
 		    writer.flush();
@@ -83,6 +80,16 @@ public class BlogTemplateUtils {
 			pps.add(pp);
 		}
 		return pps;
+	}
+
+	private static HashMap<String, Object> setScopeForPagination(int totalPages, int currentPage, List<BlogPost> subList, String relativeFilename) {
+		HashMap<String, Object> scopes = new HashMap<String, Object>();
+		scopes.put("posts", subList);
+		scopes.put("num_pages_total", totalPages);
+		scopes.put("num_pages_current", String.valueOf(currentPage));
+		scopes.put("next_page_relative_url", (currentPage>=totalPages) ? false : getGeneratedPaginationFilename(currentPage+1, relativeFilename));
+		scopes.put("previous_page_relative_url", (currentPage<=1) ? false : getGeneratedPaginationFilename(currentPage-1, relativeFilename));
+		return scopes;
 	}
 
 	private static String getGeneratedPaginationFilename(int currentPage, String relativeFileName) {
