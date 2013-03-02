@@ -17,7 +17,7 @@ TODO
 * ~~Capitalisation in blog attributes - make them all lowercase on parsing?~~
 * Ant build.xml / Gradle? - sod Eclipse
 * ~~Pagination for index.html etc~~
-* Pagination filter based on blog post attribute
+* Pagination filter based on blog post attribute - category_[metadata.tags].15.pages.template ?
 * ~~Turn off pagination when specified as 0 - just set it really high, the first page will be just index.html anyway.~~
 * Plugins 
  * Tags plugin
