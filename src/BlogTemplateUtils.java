@@ -50,27 +50,39 @@ public class BlogTemplateUtils {
 		return null;
 	}
 
-	private static int getPaginationNumberFromFilename(String absoluteFile) {
-		//
+	private static int getPaginationNumberFromFilename(String absoluteFileName) {
 		Pattern p = Pattern.compile(".*\\.(\\d+)\\.pagination.template");
-		Matcher m = p.matcher(absoluteFile);
+		Matcher m = p.matcher(absoluteFileName);
 		m.matches();
 		String num = m.group(1);
 		return Integer.valueOf(num);
 	}
 
 	private static void applyPaginationTemplateToBlogPosts(ArrayList<BlogPost> bps, int paginationSize, String pageTemplateString) {
+	    int totalPages = (int) Math.ceil((double)bps.size() / (double)paginationSize);
 	    MustacheFactory mf = new DefaultMustacheFactory();		
 		Mustache mustache = mf.compile(new StringReader(pageTemplateString), "");
-	    HashMap<String, Object> scopes = new HashMap<String, Object>();
-	    List<BlogPost> subList = bps.subList(0, paginationSize);
-		scopes.put("posts", subList);
-	    scopes.put("num_pages_total", subList.size() / paginationSize);
-	    scopes.put("num_pages_current", "1");
-	    StringWriter writer = new StringWriter();	    
-	    mustache.execute(writer, scopes);
-	    writer.flush();
-		System.out.println(writer.getBuffer().toString());
+		boolean atEndOfPages = false;
+		for(int currentPage = 1;!atEndOfPages;currentPage++) {
+			List<BlogPost> subList = getSublistForPagination(bps, paginationSize, currentPage);
+			HashMap<String, Object> scopes = new HashMap<String, Object>();
+			scopes.put("posts", subList);
+			scopes.put("num_pages_total", totalPages);
+		    scopes.put("num_pages_current", String.valueOf(currentPage));
+		    StringWriter writer = new StringWriter();	    
+		    mustache.execute(writer, scopes);
+		    writer.flush();
+			System.out.println(writer.getBuffer().toString());
+			if(subList.get(subList.size()-1) == bps.get(bps.size()-1)) atEndOfPages = true;
+		}
+	}
+
+	private static List<BlogPost> getSublistForPagination( ArrayList<BlogPost> bps, int paginationSize, int currentPage) {
+		int startPostNum = (currentPage-1)*paginationSize;
+		int endPostNum = currentPage*paginationSize;
+		if(endPostNum>bps.size()) endPostNum = bps.size();
+		List<BlogPost> subList = bps.subList(startPostNum, endPostNum);
+		return subList;
 	}
 
 

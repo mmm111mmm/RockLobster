@@ -16,6 +16,9 @@
 				</div>
 			</div>
 			{{/posts}}
-		<div>
+			<div class="blog-posts-pagination-info">
+				Page {{num_pages_current}} of {{num_pages_total}}
+			</div>
+		</div>
 	</body>
 </html>
