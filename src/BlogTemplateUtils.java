@@ -23,7 +23,7 @@ public class BlogTemplateUtils {
     					"<html>" + "\n" +
     							"<head>" +" \n" +
 	    							"<title>" +" \n" +
-				    					"{{#attr}}{{Title}}{{/attr}}" + "\n" +
+				    					"{{#attr}}{{title}}{{/attr}}" + "\n" +
 	    							"</title" +" \n" +
     							"</head>" +" \n" +
 	    						"<body>" +" \n" +
@@ -31,10 +31,10 @@ public class BlogTemplateUtils {
 	    								"{{& post}}" + "\n" +
 		    						"<div>" + "\n" +
 		    						"<div class=\"blog-tags\">" + "\n" +
-				    					"Tags: {{#attr}}{{Tags}}{{/attr}}" +"\n" +
+				    					"Tags: {{#attr}}{{tags}}{{/attr}}" +"\n" +
 		    						"<div>" + "\n" +
 		    						"<div class=\"blog-date\">" + "\n" +
-				    					"Posted: {{#attr}}{{Date}}{{/attr}}" +"\n" +
+				    					"Posted: {{#attr}}{{date}}{{/attr}}" +"\n" +
 		    						"<div>" + "\n" +
     							"</body>" + "\n" +
     					"</html>";

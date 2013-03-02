@@ -38,7 +38,7 @@ public class BlogPostParsing {
 			if(t.equals("") && !endOfMetadata) endOfMetadata = true;
 			else if(!endOfMetadata){
 				String[] matadata = t.split(":", 2);
-				String key = matadata[0];
+				String key = matadata[0].toLowerCase();
 				String value = matadata[1];
 				bp.addMetadata(key, value.trim());
 			} else {
@@ -54,16 +54,16 @@ public class BlogPostParsing {
 
 	private static void addMissingMetadata(File f, BlogPost bp) throws Exception {
 		String name2 = f.getName();
-		if(!bp.getMetadata().containsKey("Title")) {
+		if(!bp.getMetadata().containsKey("title")) {
 			String name = name2;
 			String[] split = name.split("\\.");
 			if(split.length>0) {
-				bp.addMetadata("Title",split[0]);
+				bp.addMetadata("title",split[0]);
 			} else {
-				bp.addMetadata("Title","Unknown title!");
+				bp.addMetadata("title","Unknown title!");
 			}
 		} 
-		if(!bp.getMetadata().containsKey("Date")) {
+		if(!bp.getMetadata().containsKey("date")) {
 			long lastModified = f.lastModified();
 			try {
 				lastModified = GitUtils.getFirstCommitDataForFile(Main.sFileGitRepo, name2);
@@ -71,7 +71,7 @@ public class BlogPostParsing {
 				e.printStackTrace();
 			}
 			SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss Z");
-			bp.addMetadata("Date",sdf.format(lastModified));
+			bp.addMetadata("date",sdf.format(lastModified));
 		} 
 	}
 

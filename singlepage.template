@@ -1,21 +1,21 @@
 <html>
 	<head>
 		<title>
-			{{#attr}}{{Title}}{{/attr}}
+			{{#attr}}{{title}}{{/attr}}
 		</title>
 	</head>
 	<body>
 		<div class="blog-title">
-			{{#attr}}{{Title}}{{/attr}}
+			{{#attr}}{{title}}{{/attr}}
 		<div>
 		<div class="blog-post">
 			{{& post}}
 		<div>
 		<div class="blog-tags">
-			Tags: {{#attr}}{{Tags}}{{/attr}}
+			Tags: {{#attr}}{{tags}}{{/attr}}
 		<div>
 		<div class="blog-date">
-			Posted: {{#attr}}{{Date}}{{/attr}}
+			Posted: {{#attr}}{{date}}{{/attr}}
 		<div>
 	</body>
 </html>
