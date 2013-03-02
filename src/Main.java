@@ -49,8 +49,9 @@ public class Main {
 		BlogFileCreationUtils.createPosts(pages);
 	}
 	
-	private static void createIndexPages(ArrayList<BlogPost> bps) {
-		// TODO Auto-generated method stub
+	private static void createIndexPages(ArrayList<BlogPost> bps) throws Exception {
+		System.out.println("## Applying index page template to blog files");
+		ArrayList<Page> pages = BlogTemplateUtils.convertBlogPostToIndexPages(bps);
 	}
 
 }

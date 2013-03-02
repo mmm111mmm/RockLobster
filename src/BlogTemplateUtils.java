@@ -1,8 +1,11 @@
+import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.regex.Pattern;
 
 import utils.FileUtils;
 
@@ -59,5 +62,15 @@ public class BlogTemplateUtils {
 		}
 		return pages;
 	}
+
+	public static ArrayList<Page> convertBlogPostToIndexPages(ArrayList<BlogPost> bps) {
+		File f = new File(".");
+		File[] pagesTemplates = FileUtils.getFilesInDirectory(f, ".*\\.pages.template");
+		for (File file : pagesTemplates) {
+			System.out.println(file);
+		}
+		return null;
+	}
+
 
 }

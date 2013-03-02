@@ -1,8 +1,10 @@
 package utils;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.FileReader;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class FileUtils {
 
@@ -34,5 +36,16 @@ public class FileUtils {
 			}
 		}
 	}	
+	
+	public static File[] getFilesInDirectory(File f, String regex) {
+		final Pattern p = Pattern.compile(regex);
+		File[] pagesTemplates = f.listFiles(new FileFilter() {
+			@Override
+			public boolean accept(File f) {
+				return p.matcher(f.getName()).matches();
+			}
+		});
+		return pagesTemplates;
+	}
 
 }
