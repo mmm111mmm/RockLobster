@@ -37,16 +37,16 @@ public class BlogTemplateUtils {
 		return pages;
 	}
 
-	public static ArrayList<Page> convertBlogPostToIndexPages(ArrayList<BlogPost> bps) {
-		File[] pagesTemplates = FileUtils.getFilesInDirectory(new File("."), ".*\\.pages.template");
+	public static ArrayList<Page> convertBlogPostToPaginatedPages(ArrayList<BlogPost> bps) {
+		File[] pagesTemplates = FileUtils.getFilesInDirectory(new File("."), ".*\\.pagination.template");
 		for (File file : pagesTemplates) {
 			String pageTemplateString = FileUtils.getStringFromFile(file.getAbsolutePath());
-			applyIndexTemplateToBlogPosts(bps, pageTemplateString);
+			applyPaginationTemplateToBlogPosts(bps, pageTemplateString);
 		}
 		return null;
 	}
 
-	private static void applyIndexTemplateToBlogPosts(ArrayList<BlogPost> bps, String pageTemplateString) {
+	private static void applyPaginationTemplateToBlogPosts(ArrayList<BlogPost> bps, String pageTemplateString) {
 	    MustacheFactory mf = new DefaultMustacheFactory();		
 		Mustache mustache = mf.compile(new StringReader(pageTemplateString), "");
 	    HashMap<String, Object> scopes = new HashMap<String, Object>();

@@ -38,8 +38,8 @@ public class Main {
 		BlogMarkdownUtils.convertMDToHTML(bps);
 		System.out.println("## Creating single pages");
 		createSinglePages(bps);
-		System.out.println("## Creating index pages (i.e. index.html, archive.html, archive_1.html, etc.");
-		createIndexPages(bps);
+		System.out.println("## Creating paginated pages (i.e. index.html, archive.html, archive_1.html, etc.");
+		createPaginatedPages(bps);
 	}
 	
 	private static void createSinglePages(ArrayList<BlogPost> bps) throws Exception {
@@ -49,9 +49,9 @@ public class Main {
 		BlogFileCreationUtils.createPosts(pages);
 	}
 	
-	private static void createIndexPages(ArrayList<BlogPost> bps) throws Exception {
-		System.out.println("## Applying index page template to blog files");
-		ArrayList<Page> pages = BlogTemplateUtils.convertBlogPostToIndexPages(bps);
+	private static void createPaginatedPages(ArrayList<BlogPost> bps) throws Exception {
+		System.out.println("## Applying paginated page templates to blog files");
+		ArrayList<Page> pages = BlogTemplateUtils.convertBlogPostToPaginatedPages(bps);
 	}
 
 }
