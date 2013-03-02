@@ -16,6 +16,10 @@ TODO
 * ~~Optional template files found in CWD to use.~~
 * ~~Capitalisation in blog attributes - make them all lowercase on parsing?~~
 * Ant build.xml / Gradle? - sod Eclipse
+* Pagination for index.html
+* Pagination filter based on blog post attribute
+* Turn off pagination when specified as 0.
 * Plugins 
-* How to do pagination in index files and possibly others
-  * Via a plugin? Metadata in filename - index.5.pages.template?
+ * Tags plugin
+ * Pretty date plugin 
+* Integrate disqus?
