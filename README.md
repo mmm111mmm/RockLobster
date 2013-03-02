@@ -16,9 +16,9 @@ TODO
 * ~~Optional template files found in CWD to use.~~
 * ~~Capitalisation in blog attributes - make them all lowercase on parsing?~~
 * Ant build.xml / Gradle? - sod Eclipse
-* Pagination for index.html
+* ~~Pagination for index.html etc~~
 * Pagination filter based on blog post attribute
-* Turn off pagination when specified as 0.
+* ~~Turn off pagination when specified as 0 - just set it really high, the first page will be just index.html anyway.~~
 * Plugins 
  * Tags plugin
  * Pretty date plugin 
