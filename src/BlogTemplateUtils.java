@@ -38,11 +38,19 @@ public class BlogTemplateUtils {
 	}
 
 	public static ArrayList<Page> convertBlogPostToIndexPages(ArrayList<BlogPost> bps) {
-		File f = new File(".");
-		File[] pagesTemplates = FileUtils.getFilesInDirectory(f, ".*\\.pages.template");
-		for (File file : pagesTemplates) {
-			System.out.println(file);
-		}
+		File[] pagesTemplates = FileUtils.getFilesInDirectory(new File("."), ".*\\.pages.template");
+		String pageTemplateString = FileUtils.getStringFromFile(pagesTemplates[0].getAbsolutePath());
+		// Apply mustache to the template;
+	    MustacheFactory mf = new DefaultMustacheFactory();		
+		Mustache mustache = mf.compile(new StringReader(pageTemplateString), "");
+	    HashMap<String, Object> scopes = new HashMap<String, Object>();
+	    scopes.put("posts", bps);
+	    scopes.put("num_pages_total", "100");
+	    scopes.put("num_pages_current", "1");
+	    StringWriter writer = new StringWriter();	    
+	    mustache.execute(writer, scopes);
+	    writer.flush();
+		System.out.println(writer.getBuffer().toString());
 		return null;
 	}
 
