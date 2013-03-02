@@ -14,7 +14,7 @@ TODO
 * ~~Specify where to put the output html post files~~
 * ~~Remove .md from output html filename~~
 * ~~Optional template files found in CWD to use.~~
-* Capitalisation in blog attributes - make them all lowercase on parsing?
+* ~~Capitalisation in blog attributes - make them all lowercase on parsing?~~
 * Ant build.xml / Gradle? - sod Eclipse
 * Plugins 
 * How to do pagination in index files and possibly others
