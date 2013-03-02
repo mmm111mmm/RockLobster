@@ -21,8 +21,7 @@ import entities.PaginatedPage;
 
 public class BlogTemplateUtils {
 
-	private static final String PAGINATION_URL_LEADING_TEXT = ".";
-	private static final String PAGINATION_URL_ENDING_TEXT = "";
+	
 	private static final String SINGLEPAGE_TEMPLATE_LOCATION = "singlepage.template";
 
 	public static ArrayList<Page> convertBlogPostToSinglePages(ArrayList<BlogPost> bps) throws IOException {
@@ -76,7 +75,7 @@ public class BlogTemplateUtils {
 		    mustache.execute(writer, scopes);
 		    writer.flush();
 		    // Add this paginated page to the rest
-			PaginatedPage pp = new PaginatedPage(getGeneratedPaginationFilename(currentPage, relativeFileName), currentPage, writer.getBuffer().toString());
+			PaginatedPage pp = new PaginatedPage(relativeFileName, currentPage, writer.getBuffer().toString());
 			pps.add(pp);
 		}
 		return pps;
@@ -87,17 +86,9 @@ public class BlogTemplateUtils {
 		scopes.put("posts", subList);
 		scopes.put("num_pages_total", totalPages);
 		scopes.put("num_pages_current", String.valueOf(currentPage));
-		scopes.put("next_page_relative_url", (currentPage>=totalPages) ? false : getGeneratedPaginationFilename(currentPage+1, relativeFilename));
-		scopes.put("previous_page_relative_url", (currentPage<=1) ? false : getGeneratedPaginationFilename(currentPage-1, relativeFilename));
+		scopes.put("next_page_relative_url", (currentPage>=totalPages) ? false : PaginatedPage.getGeneratedPaginationFilename(currentPage+1, relativeFilename));
+		scopes.put("previous_page_relative_url", (currentPage<=1) ? false : PaginatedPage.getGeneratedPaginationFilename(currentPage-1, relativeFilename));
 		return scopes;
-	}
-
-	private static String getGeneratedPaginationFilename(int currentPage, String relativeFileName) {
-		String urlPageNumText = "";
-		if(currentPage!=1) {
-			urlPageNumText = PAGINATION_URL_LEADING_TEXT + String.valueOf(currentPage-1) + PAGINATION_URL_ENDING_TEXT;
-		}
-		return relativeFileName.replaceFirst("\\.\\d+\\.pagination\\.template", urlPageNumText+".html");
 	}
 
 	private static List<BlogPost> getSublistForPagination( ArrayList<BlogPost> bps, int paginationSize, int currentPage) {
