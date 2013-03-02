@@ -5,8 +5,6 @@ import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepository;
 
 import utils.GitUtils;
-
-
 import entities.BlogPost;
 import entities.Page;
 
@@ -38,13 +36,21 @@ public class Main {
 		ArrayList<BlogPost> bps = BlogPostParsing.parseFilesInDirectory(absolutePath);
 		System.out.println("## Converting blog files from markdown");
 		BlogMarkdownUtils.convertMDToHTML(bps);
+		System.out.println("## Creating single pages");
+		createSinglePages(bps);
+		System.out.println("## Creating index pages (i.e. index.html, archive.html, archive_1.html, etc.");
+		createIndexPages(bps);
+	}
+	
+	private static void createSinglePages(ArrayList<BlogPost> bps) throws Exception {
 		System.out.println("## Applying page template to blog files");
 		ArrayList<Page> pages = BlogTemplateUtils.convertBlogPostToSinglePages(bps);
 		System.out.println("## Output new blog files to output directory");
 		BlogFileCreationUtils.createPosts(pages);
 	}
 	
-
-
+	private static void createIndexPages(ArrayList<BlogPost> bps) {
+		// TODO Auto-generated method stub
+	}
 
 }
