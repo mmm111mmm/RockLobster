@@ -32,10 +32,15 @@ public class Main {
 		String absolutePath = new File(DIR_LOCAL_REPO).getAbsolutePath(); // For location of files
 		sFileGitRepo = new FileRepository(absolutePath+"/.git"); // To refereces our git repo
 		// Blog things up
+		System.out.println("## Cloning (or pulling existing) git repo");
 		GitUtils.cloneOrPullExistingRepository(URL_REMOTE_REPO, sFileGitRepo); 
+		System.out.println("## Parsing blog files");
 		ArrayList<BlogPost> bps = BlogPostParsing.parseFilesInDirectory(absolutePath);
+		System.out.println("## Converting blog files from markdown");
 		BlogMarkdownUtils.convertMDToHTML(bps);
+		System.out.println("## Applying page template to blog files");
 		ArrayList<Page> pages = BlogTemplateUtils.convertBlogPostToSinglePages(bps);
+		System.out.println("## Output new blog files to output directory");
 		BlogFileCreationUtils.createPosts(pages);
 	}
 	
