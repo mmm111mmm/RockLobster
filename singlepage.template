@@ -1,0 +1,21 @@
+<html>
+	<head>
+		<title>
+			{{#attr}}{{Title}}{{/attr}}
+		</title>
+	</head>
+	<body>
+		<div class="blog-title">
+			{{#attr}}{{Title}}{{/attr}}
+		<div>
+		<div class="blog-post">
+			{{& post}}
+		<div>
+		<div class="blog-tags">
+			Tags: {{#attr}}{{Tags}}{{/attr}}
+		<div>
+		<div class="blog-date">
+			Posted: {{#attr}}{{Date}}{{/attr}}
+		<div>
+	</body>
+</html>
