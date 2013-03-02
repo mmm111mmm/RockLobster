@@ -15,6 +15,7 @@
 					{{& post}}
 				</div>
 			</div>
+			<hr />
 			{{/posts}}
 			<div class="blog-posts-pagination-info">
 				Page {{num_pages_current}} of {{num_pages_total}}

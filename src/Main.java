@@ -53,7 +53,7 @@ public class Main {
 	private static void createPaginatedPages(ArrayList<BlogPost> bps) throws Exception {
 		System.out.println("## Applying paginated page templates to blog files");
 		ArrayList<PaginatedPage> pages = BlogTemplateUtils.convertBlogPostToPaginatedPages(bps);
-		int i = 0;
+		BlogFileCreationUtils.createPosts(pages);
 	}
 
 }

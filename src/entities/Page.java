@@ -1,13 +1,13 @@
 package entities;
 
-public class Page {
+public class Page implements ContentAndFilename {
 
 	private String filename;
-	private String string;
+	private String content;
 
 	public Page(String filename, String page) {
 		this.setFilename(filename);
-		this.setString(page);
+		this.setContent(page);
 	}
 
 	public String getFilename() {
@@ -18,12 +18,12 @@ public class Page {
 		this.filename = filename;
 	}
 
-	public String getString() {
-		return string;
+	public String getContent() {
+		return content;
 	}
 
-	public void setString(String string) {
-		this.string = string;
+	public void setContent(String string) {
+		this.content = string;
 	}
 
 }

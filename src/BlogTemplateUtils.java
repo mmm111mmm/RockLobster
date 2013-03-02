@@ -21,6 +21,8 @@ import entities.PaginatedPage;
 
 public class BlogTemplateUtils {
 
+	private static final String PAGINATION_URL_LEADING_TEXT = ".";
+	private static final String PAGINATION_URL_ENDING_TEXT = "";
 	private static final String SINGLEPAGE_TEMPLATE_LOCATION = "singlepage.template";
 
 	public static ArrayList<Page> convertBlogPostToSinglePages(ArrayList<BlogPost> bps) throws IOException {
@@ -47,7 +49,7 @@ public class BlogTemplateUtils {
 		for (File file : pagesTemplates) {
 			int paginationNumber = getPaginationNumberFromFilename(file.getAbsolutePath());
 			String pageTemplateString = FileUtils.getStringFromFile(file.getAbsolutePath());
-			ArrayList<PaginatedPage> paginatedPages = applyPaginationTemplateToBlogPosts(bps, paginationNumber, file.getAbsolutePath(), pageTemplateString);
+			ArrayList<PaginatedPage> paginatedPages = applyPaginationTemplateToBlogPosts(bps, paginationNumber, file.getName(), pageTemplateString);
 			allPaginations.addAll(paginatedPages);
 		}
 		return allPaginations;
@@ -61,7 +63,7 @@ public class BlogTemplateUtils {
 		return Integer.valueOf(num);
 	}
 
-	private static ArrayList<PaginatedPage> applyPaginationTemplateToBlogPosts(ArrayList<BlogPost> bps, int paginationSize, String fileName, String pageTemplateString) {
+	private static ArrayList<PaginatedPage> applyPaginationTemplateToBlogPosts(ArrayList<BlogPost> bps, int paginationSize, String relativeFileName, String pageTemplateString) {
 		ArrayList<PaginatedPage> pps = new ArrayList<PaginatedPage>();
 	    int totalPages = (int) Math.ceil((double)bps.size() / (double)paginationSize);
 	    MustacheFactory mf = new DefaultMustacheFactory();		
@@ -77,10 +79,18 @@ public class BlogTemplateUtils {
 		    mustache.execute(writer, scopes);
 		    writer.flush();
 		    // Add this paginated page to the rest
-			PaginatedPage pp = new PaginatedPage(fileName, currentPage, writer.getBuffer().toString());
+			PaginatedPage pp = new PaginatedPage(getGeneratedPaginationFilename(currentPage, relativeFileName), currentPage, writer.getBuffer().toString());
 			pps.add(pp);
 		}
 		return pps;
+	}
+
+	private static String getGeneratedPaginationFilename(int currentPage, String relativeFileName) {
+		String urlPageNumText = "";
+		if(currentPage!=1) {
+			urlPageNumText = PAGINATION_URL_LEADING_TEXT + String.valueOf(currentPage-1) + PAGINATION_URL_ENDING_TEXT;
+		}
+		return relativeFileName.replaceFirst("\\.\\d+\\.pagination\\.template", urlPageNumText+".html");
 	}
 
 	private static List<BlogPost> getSublistForPagination( ArrayList<BlogPost> bps, int paginationSize, int currentPage) {

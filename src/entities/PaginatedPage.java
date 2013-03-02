@@ -1,6 +1,6 @@
 package entities;
 
-public class PaginatedPage {
+public class PaginatedPage implements ContentAndFilename {
 
 	private String fileName;
 	private int currentPage;
@@ -11,11 +11,11 @@ public class PaginatedPage {
 		this.content = content;
 	}
 
-	public String getFileName() {
+	public String getFilename() {
 		return fileName;
 	}
 
-	public void setFileName(String fileName) {
+	public void setFilename(String fileName) {
 		this.fileName = fileName;
 	}
 	
