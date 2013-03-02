@@ -22,9 +22,13 @@ public class Main {
 	 * Welcome to the post procedural Java program I've ever written
 	 */
 	public static void main(String[] s) throws Exception {
+		if(s.length<2) { 
+			System.err.println("Please provide repository url and output dir.");
+			return;
+		}
 		// Set up vars
 		URL_REMOTE_REPO = s[0];
-		if(s.lengh>1) sOutputDir = s[1];
+		sOutputDir = s[1];
 		String absolutePath = new File(DIR_LOCAL_REPO).getAbsolutePath(); // For location of files
 		sFileGitRepo = new FileRepository(absolutePath+"/.git"); // To refereces our git repo
 		// Blog things up
