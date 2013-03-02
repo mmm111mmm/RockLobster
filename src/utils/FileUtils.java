@@ -12,10 +12,11 @@ public class FileUtils {
 	}
 	
 	public static String getStringFromFile (String fileLocation) {
+		Scanner in = null;
 		try {		
 			File f = new File(fileLocation);
 			if(f.exists()) {
-				Scanner in = new Scanner(new FileReader(fileLocation));
+				in = new Scanner(new FileReader(fileLocation));
 				String s, str="";
 				while(in.hasNext() && (s=in.nextLine())!=null) str+=s+"\n";
 				return str;
@@ -25,7 +26,13 @@ public class FileUtils {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
-		} 
+		} finally {
+			try {
+				if(in!=null) in.close();
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
 	}	
 
 }
