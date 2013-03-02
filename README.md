@@ -22,4 +22,5 @@ TODO
 * Plugins 
  * Tags plugin
  * Pretty date plugin 
+ * Content abbreviator for index.html posts
 * Integrate disqus?
