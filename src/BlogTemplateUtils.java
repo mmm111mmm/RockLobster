@@ -16,6 +16,7 @@ import com.github.mustachejava.MustacheFactory;
 
 import entities.BlogPost;
 import entities.Page;
+import entities.PaginatedPage;
 
 
 public class BlogTemplateUtils {
@@ -40,14 +41,16 @@ public class BlogTemplateUtils {
 		return pages;
 	}
 
-	public static ArrayList<Page> convertBlogPostToPaginatedPages(ArrayList<BlogPost> bps) {
+	public static ArrayList<PaginatedPage> convertBlogPostToPaginatedPages(ArrayList<BlogPost> bps) {
+		ArrayList<PaginatedPage> allPaginations = new ArrayList<PaginatedPage>();
 		File[] pagesTemplates = FileUtils.getFilesInDirectory(new File("."), ".*\\.\\d+\\.pagination.template");
 		for (File file : pagesTemplates) {
 			int paginationNumber = getPaginationNumberFromFilename(file.getAbsolutePath());
 			String pageTemplateString = FileUtils.getStringFromFile(file.getAbsolutePath());
-			applyPaginationTemplateToBlogPosts(bps, paginationNumber, pageTemplateString);
+			ArrayList<PaginatedPage> paginatedPages = applyPaginationTemplateToBlogPosts(bps, paginationNumber, file.getAbsolutePath(), pageTemplateString);
+			allPaginations.addAll(paginatedPages);
 		}
-		return null;
+		return allPaginations;
 	}
 
 	private static int getPaginationNumberFromFilename(String absoluteFileName) {
@@ -58,12 +61,13 @@ public class BlogTemplateUtils {
 		return Integer.valueOf(num);
 	}
 
-	private static void applyPaginationTemplateToBlogPosts(ArrayList<BlogPost> bps, int paginationSize, String pageTemplateString) {
+	private static ArrayList<PaginatedPage> applyPaginationTemplateToBlogPosts(ArrayList<BlogPost> bps, int paginationSize, String fileName, String pageTemplateString) {
+		ArrayList<PaginatedPage> pps = new ArrayList<PaginatedPage>();
 	    int totalPages = (int) Math.ceil((double)bps.size() / (double)paginationSize);
 	    MustacheFactory mf = new DefaultMustacheFactory();		
 		Mustache mustache = mf.compile(new StringReader(pageTemplateString), "");
-		boolean atEndOfPages = false;
-		for(int currentPage = 1;!atEndOfPages;currentPage++) {
+		for(int currentPage = 1;((currentPage-1)*paginationSize)<bps.size();currentPage++) {
+			// Apply the template to this series of posts
 			List<BlogPost> subList = getSublistForPagination(bps, paginationSize, currentPage);
 			HashMap<String, Object> scopes = new HashMap<String, Object>();
 			scopes.put("posts", subList);
@@ -72,9 +76,11 @@ public class BlogTemplateUtils {
 		    StringWriter writer = new StringWriter();	    
 		    mustache.execute(writer, scopes);
 		    writer.flush();
-			System.out.println(writer.getBuffer().toString());
-			if(subList.get(subList.size()-1) == bps.get(bps.size()-1)) atEndOfPages = true;
+		    // Add this paginated page to the rest
+			PaginatedPage pp = new PaginatedPage(fileName, currentPage, writer.getBuffer().toString());
+			pps.add(pp);
 		}
+		return pps;
 	}
 
 	private static List<BlogPost> getSublistForPagination( ArrayList<BlogPost> bps, int paginationSize, int currentPage) {

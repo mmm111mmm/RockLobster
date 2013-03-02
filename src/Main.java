@@ -7,6 +7,7 @@ import org.eclipse.jgit.storage.file.FileRepository;
 import utils.GitUtils;
 import entities.BlogPost;
 import entities.Page;
+import entities.PaginatedPage;
 
 
 public class Main {
@@ -51,7 +52,8 @@ public class Main {
 	
 	private static void createPaginatedPages(ArrayList<BlogPost> bps) throws Exception {
 		System.out.println("## Applying paginated page templates to blog files");
-		ArrayList<Page> pages = BlogTemplateUtils.convertBlogPostToPaginatedPages(bps);
+		ArrayList<PaginatedPage> pages = BlogTemplateUtils.convertBlogPostToPaginatedPages(bps);
+		int i = 0;
 	}
 
 }
