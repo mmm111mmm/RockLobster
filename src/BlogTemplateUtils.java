@@ -4,6 +4,9 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import utils.FileUtils;
 
@@ -38,20 +41,31 @@ public class BlogTemplateUtils {
 	}
 
 	public static ArrayList<Page> convertBlogPostToPaginatedPages(ArrayList<BlogPost> bps) {
-		File[] pagesTemplates = FileUtils.getFilesInDirectory(new File("."), ".*\\.pagination.template");
+		File[] pagesTemplates = FileUtils.getFilesInDirectory(new File("."), ".*\\.\\d+\\.pagination.template");
 		for (File file : pagesTemplates) {
+			int paginationNumber = getPaginationNumberFromFilename(file.getAbsolutePath());
 			String pageTemplateString = FileUtils.getStringFromFile(file.getAbsolutePath());
-			applyPaginationTemplateToBlogPosts(bps, pageTemplateString);
+			applyPaginationTemplateToBlogPosts(bps, paginationNumber, pageTemplateString);
 		}
 		return null;
 	}
 
-	private static void applyPaginationTemplateToBlogPosts(ArrayList<BlogPost> bps, String pageTemplateString) {
+	private static int getPaginationNumberFromFilename(String absoluteFile) {
+		//
+		Pattern p = Pattern.compile(".*\\.(\\d+)\\.pagination.template");
+		Matcher m = p.matcher(absoluteFile);
+		m.matches();
+		String num = m.group(1);
+		return Integer.valueOf(num);
+	}
+
+	private static void applyPaginationTemplateToBlogPosts(ArrayList<BlogPost> bps, int paginationSize, String pageTemplateString) {
 	    MustacheFactory mf = new DefaultMustacheFactory();		
 		Mustache mustache = mf.compile(new StringReader(pageTemplateString), "");
 	    HashMap<String, Object> scopes = new HashMap<String, Object>();
-	    scopes.put("posts", bps);
-	    scopes.put("num_pages_total", "100");
+	    List<BlogPost> subList = bps.subList(0, paginationSize);
+		scopes.put("posts", subList);
+	    scopes.put("num_pages_total", subList.size() / paginationSize);
 	    scopes.put("num_pages_current", "1");
 	    StringWriter writer = new StringWriter();	    
 	    mustache.execute(writer, scopes);
