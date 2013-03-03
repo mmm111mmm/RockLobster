@@ -5,7 +5,15 @@ Blog generator for Markdown files on Github (Hacked up)
 
 Run 'ant' to get all the dependencies (all 4.2MB of them...) from maven via Apache Ivy (which you also need to have installed).
 
-Then just run the program as normal Java file, and it will create HTML pages for the markdown files on my blog.
+Then you can run it as a normal Java program in eclipse. 
+
+It takes two arguments, your git repository and the output directory, i.e
+
+    "git@github.com:denevell/BlogPosts.git" "outputDir/"
+    
+You also need to specify a singepages.template and pagination.template template files in your working directory. See the examples in this repository.
+
+Then the HTML output files, single pages and paginated pages, will appear in your output directory.
 
 TODO
 ====
@@ -24,3 +32,4 @@ TODO
  * Pretty date plugin 
  * Content abbreviator for index.html posts
 * Integrate disqus?
+* Allow markdown files to be in sub folders
