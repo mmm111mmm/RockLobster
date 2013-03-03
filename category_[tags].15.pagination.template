@@ -1,0 +1,31 @@
+<html>
+	<head>
+		<title>
+			RockLobster - categories!
+		</title>
+	</head>
+	<body>
+		<div class="blog-posts">
+			{{#posts}}
+			<div class="blog-posts-entry">
+				<div class="blog-posts-entry-title">
+					{{#metadata}}{{& title}}{{/metadata}}
+				</div>
+				<div class="blog-posts-entry-post">
+					{{& post}}
+				</div>
+			</div>
+			<hr />
+			{{/posts}}
+			<div class="blog-posts-pagination-info">
+				Page {{num_pages_current}} of {{num_pages_total}}
+			</div>
+			<div class="blog-posts-pagination-info-next">
+				{{#next_page_relative_url}}<a href="{{next_page_relative_url}}">Next</a>{{/next_page_relative_url}} 
+			</div>
+			<div class="blog-posts-pagination-info-previous">
+				{{#previous_page_relative_url}}<a href="{{previous_page_relative_url}}">Previous</a>{{/previous_page_relative_url}}
+			</div>
+		</div>
+	</body>
+</html>

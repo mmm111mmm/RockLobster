@@ -11,9 +11,15 @@ import org.denevell.rocklobster.utils.FileUtils;
 
 public class PaginatedPageTemplateFactory extends FileTemplateFactory {
 	
+	private File[] mPagesTemplates;
+
+	public PaginatedPageTemplateFactory() {
+		mPagesTemplates = FileUtils.getFilesInDirectory(new File("."), ".*[^\\]]\\.\\d+\\.pagination.template");
+	}
+	
 	public List<FileTemplate> generatePages(List<BlogPost> bps) {
 		List<FileTemplate> fts = new ArrayList<FileTemplate>();
-		File[] pagesTemplates = FileUtils.getFilesInDirectory(new File("."), ".*[^\\]]\\.\\d+\\.pagination.template");
+		File[] pagesTemplates = mPagesTemplates;
 		for (File pageTemplate : pagesTemplates) {
 			int perPagePaginationNumber = getPaginationNumberFromFilename(pageTemplate.getName());
 		    int totalPages = (int) Math.ceil((double)bps.size()/ (double)perPagePaginationNumber);
@@ -21,6 +27,10 @@ public class PaginatedPageTemplateFactory extends FileTemplateFactory {
 			fts.addAll(templateFiles);
 		}
 		return fts;
+	}
+
+	public void setPagesTemplates(File[] mPagesTemplates) {
+		this.mPagesTemplates = mPagesTemplates;
 	}
 	
 	protected static int getPaginationNumberFromFilename(String absoluteFileName) {
