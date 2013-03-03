@@ -3,7 +3,7 @@ RockLobster
 
 Static Blog generator for Git hostsed Markdown files. It creates single pages, paginated pages and filtered paginated pages.
 
-RUNNING
+Running
 ========
 
 Run 'ant' to get all the dependencies (all 4.2MB of them...) from maven via Apache Ivy (which you also need to have installed). I'm soon moving to Gradle.
