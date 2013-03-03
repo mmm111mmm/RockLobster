@@ -36,16 +36,14 @@ public class Main {
 		System.out.println("## Converting blog files from markdown");
 		BlogMarkdownUtils.convertMDToHTML(bps);
 		System.out.println("## Creating single pages");
-		List<FileTemplate> templates = SinglePageTemplate.generatePageTemplates(bps);
+		List<FileTemplate> templates = SinglePageTemplate.generatePages(bps);
 		createPagesOnFilesystem(templates);
 		System.out.println("## Creating paginated pages (i.e. index.html, archive.html, archive_1.html, etc.");
-		templates = PaginatedPageTemplateFactory.generatePageTemplates(bps);
+		templates = PaginatedPageTemplateFactory.generatePages(bps);
 		createPagesOnFilesystem(templates);
 	}
 	
 	private static void createPagesOnFilesystem(List<FileTemplate> templates) throws Exception {
-		System.out.println("## Applying page templates to blog files");
-		BlogTemplateUtils.generatedContentFromTemplates(templates);
 		System.out.println("## Creating files on file system");
 		BlogFileCreationUtils.createPosts(templates);
 	}

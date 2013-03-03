@@ -46,10 +46,12 @@ public class SinglePageTemplate extends FileTemplate {
 		return filename;
 	}
 
-	public static List<FileTemplate> generatePageTemplates(List<BlogPost> bps) {
+	public static List<FileTemplate> generatePages(List<BlogPost> bps) {
 		List<FileTemplate> fts = new ArrayList<FileTemplate>();
 		for (BlogPost blogPost : bps) {
-			fts.add(new SinglePageTemplate(blogPost, SINGLEPAGE_TEMPLATE_LOCATION));
+			SinglePageTemplate singlePageTemplate = new SinglePageTemplate(blogPost, SINGLEPAGE_TEMPLATE_LOCATION);
+			singlePageTemplate.generateContent();
+			fts.add(singlePageTemplate);
 		}
 		return fts;
 	}

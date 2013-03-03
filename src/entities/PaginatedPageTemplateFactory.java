@@ -10,7 +10,7 @@ import utils.FileUtils;
 
 public class PaginatedPageTemplateFactory {
 	
-	public static List<FileTemplate> generatePageTemplates(List<BlogPost> bps) {
+	public static List<FileTemplate> generatePages(List<BlogPost> bps) {
 		List<FileTemplate> fts = new ArrayList<FileTemplate>();
 		File[] pagesTemplates = FileUtils.getFilesInDirectory(new File("."), ".*\\.\\d+\\.pagination.template");
 		for (File pageTemplate : pagesTemplates) {
@@ -35,6 +35,7 @@ public class PaginatedPageTemplateFactory {
 		for(int currentPage = 1;((currentPage-1)*perPagePaginationNumber)<bps.size();currentPage++) {
 			List<BlogPost> subList = getSublistForPagination(bps, perPagePaginationNumber, currentPage);
 			FileTemplate ft = new PaginatedPageTemplate(file.getName(), subList, currentPage, totalPages);
+			ft.generateContent();
 			fts.add(ft);
 		}
 		return fts;
