@@ -1,12 +1,13 @@
+package org.denevell.rocklobster;
 import java.io.File;
 import java.util.List;
 
+import org.denevell.rocklobster.entities.BlogPost;
+import org.denevell.rocklobster.entities.FileTemplateFactory;
+import org.denevell.rocklobster.utils.GitUtils;
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepository;
 
-import utils.GitUtils;
-import entities.BlogPost;
-import entities.FileTemplateFactory;
 
 
 public class Main {

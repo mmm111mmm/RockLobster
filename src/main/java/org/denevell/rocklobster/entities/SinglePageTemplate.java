@@ -1,11 +1,12 @@
-package entities;
+package org.denevell.rocklobster.entities;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import utils.FileUtils;
+import org.denevell.rocklobster.utils.FileUtils;
+
 
 public class SinglePageTemplate extends FileTemplate {
 	

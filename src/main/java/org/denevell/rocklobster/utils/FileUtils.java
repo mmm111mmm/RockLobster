@@ -1,4 +1,4 @@
-package utils;
+package org.denevell.rocklobster.utils;
 
 import java.io.File;
 import java.io.FileFilter;

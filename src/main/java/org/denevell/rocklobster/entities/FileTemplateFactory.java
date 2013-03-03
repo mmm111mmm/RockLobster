@@ -1,16 +1,18 @@
-package entities;
+package org.denevell.rocklobster.entities;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
-import utils.ClassUtils;
+import org.denevell.rocklobster.utils.ClassUtils;
+
 
 public abstract class FileTemplateFactory {
 	
 	public static List<FileTemplateFactory> getFactories() {
 		List<FileTemplateFactory> factories = new ArrayList<FileTemplateFactory>();
 		try {
-			List<Class<FileTemplateFactory>> classes = ClassUtils.getNonJarClassesInPackage("entities", FileTemplateFactory.class);
+			Set<Class<FileTemplateFactory>> classes = ClassUtils.getClassesInPackage("org.denevell.rocklobster.entities", FileTemplateFactory.class);
 			for (Class<FileTemplateFactory> factoryClass: classes) {
 				FileTemplateFactory inst = factoryClass.newInstance();
 				factories.add(inst);

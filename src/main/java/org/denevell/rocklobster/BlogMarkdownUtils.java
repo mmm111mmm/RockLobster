@@ -1,9 +1,10 @@
+package org.denevell.rocklobster;
 import java.util.List;
 
+import org.denevell.rocklobster.entities.BlogPost;
 import org.pegdown.Extensions;
 import org.pegdown.PegDownProcessor;
 
-import entities.BlogPost;
 
 
 public class BlogMarkdownUtils {

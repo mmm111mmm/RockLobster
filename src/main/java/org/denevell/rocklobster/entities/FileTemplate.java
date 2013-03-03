@@ -1,4 +1,4 @@
-package entities;
+package org.denevell.rocklobster.entities;
 
 import java.io.StringReader;
 import java.io.StringWriter;

@@ -1,11 +1,13 @@
+package org.denevell.rocklobster;
+
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.List;
 
-import utils.FileUtils;
-import entities.BlogPost;
-import entities.FileTemplate;
-import entities.FileTemplateFactory;
+import org.denevell.rocklobster.entities.BlogPost;
+import org.denevell.rocklobster.entities.FileTemplate;
+import org.denevell.rocklobster.entities.FileTemplateFactory;
+import org.denevell.rocklobster.utils.FileUtils;
 
 
 public class BlogFileCreationUtils {

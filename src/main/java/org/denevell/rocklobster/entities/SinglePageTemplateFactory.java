@@ -1,4 +1,4 @@
-package entities;
+package org.denevell.rocklobster.entities;
 
 import java.util.ArrayList;
 import java.util.List;

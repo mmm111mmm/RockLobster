@@ -1,3 +1,5 @@
+package org.denevell.rocklobster;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -5,10 +7,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import utils.GitUtils;
-
-
-import entities.BlogPost;
+import org.denevell.rocklobster.entities.BlogPost;
+import org.denevell.rocklobster.utils.GitUtils;
 
 
 public class BlogPostParsing {
