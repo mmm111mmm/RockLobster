@@ -12,9 +12,12 @@ dependencies {
 	compile 'org.reflections:reflections:0.9.8'
 }
 
-// Include all the dependencies to create a fat jar
 jar {
+    // Include all the dependencies to create a fat jar
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    manifest {
+        attributes("Main-Class": "org.denevell.rocklobster.Main" )
+    }
 }
 
 // Used to collect all the jars if needed. 
