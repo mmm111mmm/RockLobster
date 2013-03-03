@@ -11,9 +11,15 @@ public class SinglePageTemplate extends FileTemplate {
 	
 	private BlogPost mBp;
 	private String mPageTemplateString;
-	private static final String SINGLEPAGE_TEMPLATE_LOCATION = "singlepage.template";
 	
-	private SinglePageTemplate(BlogPost bp, String pageTemplateFile) {
+	/**
+	 * @param bp
+	 * You should call SinglePageTemplateFactory, since these objects, along with the other FileTemplate
+	 * classes, are created via Factories. This this case all it does is specify the template file.
+	 * But the other factories do exciting, exotic things, for various values of exotic.
+	 * @param pageTemplateFile
+	 */
+	public SinglePageTemplate(BlogPost bp, String pageTemplateFile) {
 		mBp = bp;
 		mPageTemplateString = FileUtils.getStringFromFile(pageTemplateFile);
 		if(mPageTemplateString==null) throw new RuntimeException("No singlepages.template file found in CWD.");
@@ -44,16 +50,6 @@ public class SinglePageTemplate extends FileTemplate {
 	public String getPostProcessedFilename() {
 		String filename = mBp.getFilename().replace(".md", ".html");
 		return filename;
-	}
-
-	public static List<FileTemplate> generatePages(List<BlogPost> bps) {
-		List<FileTemplate> fts = new ArrayList<FileTemplate>();
-		for (BlogPost blogPost : bps) {
-			SinglePageTemplate singlePageTemplate = new SinglePageTemplate(blogPost, SINGLEPAGE_TEMPLATE_LOCATION);
-			singlePageTemplate.generateContent();
-			fts.add(singlePageTemplate);
-		}
-		return fts;
 	}
 
 }

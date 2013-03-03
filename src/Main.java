@@ -6,9 +6,7 @@ import org.eclipse.jgit.storage.file.FileRepository;
 
 import utils.GitUtils;
 import entities.BlogPost;
-import entities.FileTemplate;
-import entities.PaginatedPageTemplateFactory;
-import entities.SinglePageTemplate;
+import entities.FileTemplateFactory;
 
 
 public class Main {
@@ -35,11 +33,8 @@ public class Main {
 		List<BlogPost> bps = BlogPostParsing.parseFilesInDirectory(absolutePath);
 		System.out.println("## Converting blog files from markdown");
 		BlogMarkdownUtils.convertMDToHTML(bps);
-		System.out.println("## Creating single and paginated pages");
-		List<FileTemplate> templates = SinglePageTemplate.generatePages(bps);
-		templates.addAll(PaginatedPageTemplateFactory.generatePages(bps));
-		System.out.println("## Creating files on file system");
-		BlogFileCreationUtils.createPosts(templates);
+		System.out.println("## Creating single and paginated pages from factories onto filesystem");
+		BlogFileCreationUtils.createPosts(bps, FileTemplateFactory.getFactories());
 	}
 	
 }

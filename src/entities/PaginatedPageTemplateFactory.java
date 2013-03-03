@@ -8,9 +8,9 @@ import java.util.regex.Pattern;
 
 import utils.FileUtils;
 
-public class PaginatedPageTemplateFactory {
+public class PaginatedPageTemplateFactory extends FileTemplateFactory {
 	
-	public static List<FileTemplate> generatePages(List<BlogPost> bps) {
+	public List<FileTemplate> generatePages(List<BlogPost> bps) {
 		List<FileTemplate> fts = new ArrayList<FileTemplate>();
 		File[] pagesTemplates = FileUtils.getFilesInDirectory(new File("."), ".*\\.\\d+\\.pagination.template");
 		for (File pageTemplate : pagesTemplates) {
