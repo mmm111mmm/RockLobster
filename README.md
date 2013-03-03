@@ -1,9 +1,12 @@
 RockLobster
 ===========
 
-Blog generator for Markdown files on Github (Hacked up)
+Static Blog generator for Git hostsed Markdown files. It creates single pages, paginated pages and filtered paginated pages.
 
-Run 'ant' to get all the dependencies (all 4.2MB of them...) from maven via Apache Ivy (which you also need to have installed).
+RUNNING
+========
+
+Run 'ant' to get all the dependencies (all 4.2MB of them...) from maven via Apache Ivy (which you also need to have installed). I'm soon moving to Gradle.
 
 Then you can run it as a normal Java program in eclipse. 
 
