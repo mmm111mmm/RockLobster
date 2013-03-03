@@ -65,3 +65,4 @@ TODO
  * Content abbreviator for index.html posts
 * Integrate disqus?
 * Allow markdown files to be in sub folders
+* Specifying leading and ending text for text around paginated number in filename
