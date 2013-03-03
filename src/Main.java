@@ -1,13 +1,14 @@
 import java.io.File;
-import java.util.ArrayList;
+import java.util.List;
 
 import org.eclipse.jgit.lib.Repository;
 import org.eclipse.jgit.storage.file.FileRepository;
 
 import utils.GitUtils;
 import entities.BlogPost;
-import entities.Page;
-import entities.PaginatedPage;
+import entities.FileTemplate;
+import entities.PaginatedPageTemplateFactory;
+import entities.SinglePageTemplate;
 
 
 public class Main {
@@ -17,9 +18,6 @@ public class Main {
 	public static String sOutputDir = "";
 	public static Repository sFileGitRepo;
 
-	/**
-	 * Welcome to the post procedural Java program I've ever written
-	 */
 	public static void main(String[] s) throws Exception {
 		if(s.length<2) { 
 			System.err.println("Please provide repository url and output dir.");
@@ -34,26 +32,22 @@ public class Main {
 		System.out.println("## Cloning (or pulling existing) git repo");
 		GitUtils.cloneOrPullExistingRepository(URL_REMOTE_REPO, sFileGitRepo); 
 		System.out.println("## Parsing blog files");
-		ArrayList<BlogPost> bps = BlogPostParsing.parseFilesInDirectory(absolutePath);
+		List<BlogPost> bps = BlogPostParsing.parseFilesInDirectory(absolutePath);
 		System.out.println("## Converting blog files from markdown");
 		BlogMarkdownUtils.convertMDToHTML(bps);
 		System.out.println("## Creating single pages");
-		createSinglePages(bps);
+		List<FileTemplate> templates = SinglePageTemplate.generatePageTemplates(bps);
+		createPagesOnFilesystem(templates);
 		System.out.println("## Creating paginated pages (i.e. index.html, archive.html, archive_1.html, etc.");
-		createPaginatedPages(bps);
+		templates = PaginatedPageTemplateFactory.generatePageTemplates(bps);
+		createPagesOnFilesystem(templates);
 	}
 	
-	private static void createSinglePages(ArrayList<BlogPost> bps) throws Exception {
-		System.out.println("## Applying page template to blog files");
-		ArrayList<Page> pages = BlogTemplateUtils.convertBlogPostToSinglePages(bps);
-		System.out.println("## Output new blog files to output directory");
-		BlogFileCreationUtils.createPosts(pages);
-	}
-	
-	private static void createPaginatedPages(ArrayList<BlogPost> bps) throws Exception {
-		System.out.println("## Applying paginated page templates to blog files");
-		ArrayList<PaginatedPage> pages = BlogTemplateUtils.convertBlogPostToPaginatedPages(bps);
-		BlogFileCreationUtils.createPosts(pages);
+	private static void createPagesOnFilesystem(List<FileTemplate> templates) throws Exception {
+		System.out.println("## Applying page templates to blog files");
+		BlogTemplateUtils.generatedContentFromTemplates(templates);
+		System.out.println("## Creating files on file system");
+		BlogFileCreationUtils.createPosts(templates);
 	}
 
 }
