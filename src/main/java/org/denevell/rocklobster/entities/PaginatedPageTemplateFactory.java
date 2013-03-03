@@ -23,7 +23,7 @@ public class PaginatedPageTemplateFactory extends FileTemplateFactory {
 		return fts;
 	}
 	
-	private static int getPaginationNumberFromFilename(String absoluteFileName) {
+	protected static int getPaginationNumberFromFilename(String absoluteFileName) {
 		Pattern p = Pattern.compile(".*\\.(\\d+)\\.pagination.template");
 		Matcher m = p.matcher(absoluteFileName);
 		m.matches();
@@ -31,7 +31,7 @@ public class PaginatedPageTemplateFactory extends FileTemplateFactory {
 		return Integer.valueOf(num);
 	}
 
-	private static List<FileTemplate> generateFileTemplatesForEachPage(List<BlogPost> bps, File file, int perPagePaginationNumber, int totalPages) {
+	protected static List<FileTemplate> generateFileTemplatesForEachPage(List<BlogPost> bps, File file, int perPagePaginationNumber, int totalPages) {
 		List<FileTemplate> fts = new ArrayList<FileTemplate>();
 		for(int currentPage = 1;((currentPage-1)*perPagePaginationNumber)<bps.size();currentPage++) {
 			List<BlogPost> subList = getSublistForPagination(bps, perPagePaginationNumber, currentPage);
@@ -42,7 +42,7 @@ public class PaginatedPageTemplateFactory extends FileTemplateFactory {
 		return fts;
 	}
 
-	private static List<BlogPost> getSublistForPagination(List<BlogPost> bps, int paginationSize, int currentPage) {
+	protected static List<BlogPost> getSublistForPagination(List<BlogPost> bps, int paginationSize, int currentPage) {
 		int startPostNum = (currentPage-1)*paginationSize;
 		int endPostNum = currentPage*paginationSize;
 		if(endPostNum>bps.size()) endPostNum = bps.size();
