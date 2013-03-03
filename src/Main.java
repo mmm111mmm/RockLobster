@@ -35,17 +35,11 @@ public class Main {
 		List<BlogPost> bps = BlogPostParsing.parseFilesInDirectory(absolutePath);
 		System.out.println("## Converting blog files from markdown");
 		BlogMarkdownUtils.convertMDToHTML(bps);
-		System.out.println("## Creating single pages");
+		System.out.println("## Creating single and paginated pages");
 		List<FileTemplate> templates = SinglePageTemplate.generatePages(bps);
-		createPagesOnFilesystem(templates);
-		System.out.println("## Creating paginated pages (i.e. index.html, archive.html, archive_1.html, etc.");
-		templates = PaginatedPageTemplateFactory.generatePages(bps);
-		createPagesOnFilesystem(templates);
-	}
-	
-	private static void createPagesOnFilesystem(List<FileTemplate> templates) throws Exception {
+		templates.addAll(PaginatedPageTemplateFactory.generatePages(bps));
 		System.out.println("## Creating files on file system");
 		BlogFileCreationUtils.createPosts(templates);
 	}
-
+	
 }
