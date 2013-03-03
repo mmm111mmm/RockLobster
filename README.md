@@ -35,15 +35,11 @@ If you have any template files of the format 'somename.10.pagination.template', 
 Running
 ========
 
-Run 'ant' to get all the dependencies (all 4.2MB of them...) from maven via Apache Ivy (which you also need to have installed). I'm soon moving to Gradle.
+1. Install gradle (apt-get install gradle).
+2. gradle clean build
+3. java -jar build/libs/RockLobster.jar "git@github.com:denevell/BlogPosts.git" "outputDir/"
 
-Then you can run it as a normal Java program in eclipse. 
-
-It takes two arguments, your git repository and the output directory, i.e
-
-    "git@github.com:denevell/BlogPosts.git" "outputDir/"
-    
-You also need to specify a singepages.template and pagination.template template files in your working directory. See the examples in this repository.
+You also need to have singepages.template and pagination.template (actually optional) template files in your working directory. See the examples in this repository.
 
 Then the HTML output files, single pages and paginated pages, will appear in your output directory.
 
@@ -55,7 +51,7 @@ TODO
 * ~~Remove .md from output html filename~~
 * ~~Optional template files found in CWD to use.~~
 * ~~Capitalisation in blog attributes - make them all lowercase on parsing?~~
-* Ant build.xml / Gradle? - sod Eclipse
+* ~~Ant build.xml / Gradle? - sod Eclipse~~
 * ~~Pagination for index.html etc~~
 * Pagination filter based on blog post attribute - category_[metadata.tags].15.pages.template ?
 * ~~Turn off pagination when specified as 0 - just set it really high, the first page will be just index.html anyway.~~
