@@ -1,7 +1,36 @@
 RockLobster
 ===========
 
-Static Blog generator for Git hostsed Markdown files. It creates single pages, paginated pages and filtered paginated pages.
+Incredibly simple static Blog generator for Git hosted Markdown (plus metadata) files. 
+
+It creates single pages, paginated pages and filtered paginated pages (TODO).
+
+It parses metadata at the top of your markdown files, tags: blar,blar for instance, for access in posts and plugins.
+
+More functionality is supported through plugins (TODO).
+
+Specifying the template files
+=============================
+
+You need one singlepages.template file in your current working directory. It uses the Mustache templating syntax. See the example file in this repository. Here is a sample template where you access the title metadata in your markdown file and the post content:
+
+        {{#attr}}{{title}}{{/attr}}
+        {{& post}}
+            
+If you have any template files of the format 'somename.10.pagination.template', then it will create a paginated page for all your posts with 10 pages on each page. See the example file in this repository. WIthin your template file, your Mustache syntax will look like:
+
+        {{#posts}}
+        	<div class="blog-posts-entry-title">
+        		{{#metadata}}{{& title}}{{/metadata}}
+        	</div>
+        	<div class="blog-posts-entry-post">
+        		{{& post}}
+        	</div>
+        {{/posts}}
+        ...
+        Page {{num_pages_current}} of {{num_pages_total}}
+        {{#next_page_relative_url}}<a href="{{next_page_relative_url}}">Next</a>{{/next_page_relative_url}} 
+        {{#previous_page_relative_url}}<a href="{{previous_page_relative_url}}">Previous</a>{{/previous_page_relative_url}}
 
 Running
 ========
