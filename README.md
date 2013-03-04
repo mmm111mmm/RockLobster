@@ -35,7 +35,7 @@ If you have any template files of the format 'somename.10.pagination.template', 
 Running
 ========
 
-1. Install gradle (apt-get install gradle).
+1. Install gradle (apt-get install gradle, or homebrew install gradle or http://www.gradle.org/installation).
 2. gradle clean build
 3. java -jar build/libs/RockLobster.jar "git@github.com:denevell/BlogPosts.git" "outputDir/"
 
