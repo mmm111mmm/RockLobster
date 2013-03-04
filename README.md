@@ -52,7 +52,9 @@ If you have any template files of the format 'somename.10.pagination.template', 
 Filtered paginated page template
 --------------------------------
 
-A filtered paginated file looks like 'somename_[metadata].10.pagination.template'. This is the same as above, but in the tempalte you can access {{metadata_filter}} which refers the the value for which the [metadata] tag refered. In the case where you have [tags] in the filename and you have tags metadata which contains the tag 'stuff', you'd generated 'somename_stuff.10.pagination.template' and {{metadata_filter}} would refer to 'stuff'.
+A filtered paginated file looks like 'somename_[metadata].10.pagination.template'. This is the same as above, but in the tempalte you can access {{metadata_filter}} which refers the the value for which the [metadata] tag refered. 
+
+In the case where you have [tags] in the filename and you have tags metadata which contains the tag 'stuff', you'd generated 'somename_stuff.10.pagination.template' and {{metadata_filter}} would refer to 'stuff'. You'd generate paginated files for all your tags.
 
 TODO
 ====
