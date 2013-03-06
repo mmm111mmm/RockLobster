@@ -105,17 +105,20 @@ TODO
 * ~~Optional template files found in CWD to use.~~
 * ~~Capitalisation in blog attributes - make them all lowercase on parsing?~~
 * ~~Ant build.xml / Gradle? - sod Eclipse~~
-* Gradle task to run the jar after compilation
 * ~~Pagination for index.html etc~~
 * ~~Pagination filter based on blog post attributes - category_[metadata.tags].15.pages.template ?~~
 * ~~Turn off pagination when specified as 0 - just set it really high, the first page will be just index.html anyway.~~
 * ~~Plugins~~
  * ~~Tags plugin~~
- * Single post tags plugin
- * Pretty date plugin 
- * Content abbreviator for index.html posts
  * Ability to easily add a new plugin
-* Integrate disqus?
 * Allow markdown files to be in sub folders
-* Specifying leading and ending text for text around paginated number in filename
 * Compositing so there's a master template file which would contain either posts or paginated content?
+
+Minor: 
+* Specifying leading and ending text for text around paginated number in filename
+* Allow '.', and '..' for the output directory.
+* Integrate disqus?
+* Plugin: Pretty date
+* Plugin: Single post tags
+* Plugin: Content abbreviator for index.html posts
+* Gradle task to run the jar after compilation
