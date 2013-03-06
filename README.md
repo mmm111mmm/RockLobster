@@ -111,6 +111,7 @@ TODO
 * ~~Turn off pagination when specified as 0 - just set it really high, the first page will be just index.html anyway.~~
 * ~~Plugins~~
  * ~~Tags plugin~~
+ * Single post tags plugin
  * Pretty date plugin 
  * Content abbreviator for index.html posts
  * Ability to easily add a new plugin
