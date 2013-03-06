@@ -60,7 +60,7 @@ Filtered paginated page template
 
 'SOMENAME_[metadata-key].10.pagination.template' - This creates multiple paginated pages. [metadata-key] related to all the values of that metadata key.
 
-In the case where you have [tags] in the filename, and you have blogpost metadata which contains the tags 'stuff' and 'blar', you'd generated 'somename_stuff.html' and 'SOMENAME_blar.html'. 
+In the case where you have [tags] in the filename, and you have blogpost metadata which contains the tags 'stuff' and 'blar', you'd generated 'SOMENAME_stuff.html' and 'SOMENAME_blar.html'. 
 
 And in the templates {{metadata_filter}} would refer to 'stuff' and 'blar' respectively.
 
