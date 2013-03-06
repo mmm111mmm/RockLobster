@@ -85,12 +85,13 @@ This gets all the 'tags' metadata from all the blog posts and outputs them.
 * Arguments 1 and 2: beginning and end of the wrapper around the whole block.
 * Arguments 3 and 4: beginning and end of the wrapper around each tag
 * Argument 5: The divider inbetween each element.
+* Argument 6: Number to add to the occurrences number, which is accessbile using [occurrences] in argument 3.
 
-At argument 3 any text with [tagname] is replaced for the current tag name.
+At argument 3, any text with [tagname] is replaced for the current tag name, and [occurrences] is replaces for the occurrences of the tagname.
 
 E.g:
 
-                {{#plugins}}all-tags||<div>||</div>||<a href="category_[tagname].html">||</a>|| &#124; {{/plugins}}
+                {{#plugins}}all-tags||<div>||</div>||<a href="category_[tagname].html">||</a>|| &#124; ||13{{/plugins}}
 
 TODO
 ====

@@ -7,7 +7,7 @@
 	<body>
 		<div class="blog-title">Tech blog, innit</div>
                 <hr />
-                {{#plugins}}all-tags||<div>||</div>||<a href="category_[tagname].html">||</a>|| &#124; {{/plugins}}
+                {{#plugins}}all-tags||<div>||</div>||<a style="font-size: [occurrences]px" href="category_[tagname].html">||</a>|| &#124; ||13{{/plugins}}
                 <hr />
 		<div class="blog-posts">
 			{{#posts}}
