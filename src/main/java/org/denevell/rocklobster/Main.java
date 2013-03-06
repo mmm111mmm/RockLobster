@@ -3,7 +3,7 @@ import java.io.File;
 import java.util.List;
 
 import org.denevell.rocklobster.entities.BlogPost;
-import org.denevell.rocklobster.entities.FileTemplateFactory;
+import org.denevell.rocklobster.entities.PageTemplateFactory;
 import org.denevell.rocklobster.utils.GitUtils;
 import org.eclipse.jgit.storage.file.FileRepository;
 
@@ -32,7 +32,7 @@ public class Main {
 		System.out.println("## Converting blog files from markdown");
 		BlogMarkdownUtils.convertMDToHTML(bps);
 		System.out.println("## Creating single and paginated pages from factories onto filesystem");
-		BlogFileCreationUtils.createPosts(bps, FileTemplateFactory.getFactories());
+		BlogFileCreationUtils.createPosts(bps, PageTemplateFactory.getFactories());
 	}
 	
 }

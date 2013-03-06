@@ -7,7 +7,7 @@ import java.util.Map;
 import org.denevell.rocklobster.utils.FileUtils;
 
 
-public class SinglePageTemplate extends FileTemplate {
+public class SinglePageTemplate extends PageTemplate {
 	
 	private BlogPost mBp;
 	private String mPageTemplateString;

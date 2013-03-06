@@ -5,19 +5,19 @@ import java.io.PrintWriter;
 import java.util.List;
 
 import org.denevell.rocklobster.entities.BlogPost;
-import org.denevell.rocklobster.entities.FileTemplate;
-import org.denevell.rocklobster.entities.FileTemplateFactory;
+import org.denevell.rocklobster.entities.PageTemplate;
+import org.denevell.rocklobster.entities.PageTemplateFactory;
 import org.denevell.rocklobster.utils.FileUtils;
 
 
 public class BlogFileCreationUtils {
 	
-	public static void createPosts(List<BlogPost> bps, List<FileTemplateFactory> factories) throws FileNotFoundException {
+	public static void createPosts(List<BlogPost> bps, List<PageTemplateFactory> factories) throws FileNotFoundException {
 		// Get the file templates from the factories
-		for (FileTemplateFactory factory : factories) {
-			List<FileTemplate> templates = factory.generatePages(bps);
+		for (PageTemplateFactory factory : factories) {
+			List<PageTemplate> templates = factory.generatePages(bps);
 			// Output them to the fs
-			for (FileTemplate fileTemplate : templates) {
+			for (PageTemplate fileTemplate : templates) {
 				String filename = fileTemplate.getPostProcessedFilename();
 				FileUtils.createDir(Main.sOutputDir);
 				PrintWriter pw = new PrintWriter(Main.sOutputDir + filename);

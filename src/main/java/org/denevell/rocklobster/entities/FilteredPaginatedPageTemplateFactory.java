@@ -12,14 +12,14 @@ import org.denevell.rocklobster.utils.PaginationUtils;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 
-public class FilteredPaginatedPageTemplateFactory extends FileTemplateFactory {
+public class FilteredPaginatedPageTemplateFactory extends PageTemplateFactory {
 
 	private List<BlogPost> mUnfilteredBlogposts;
 
 	@Override
-	public List<FileTemplate> generatePages(List<BlogPost> bps) {
+	public List<PageTemplate> generatePages(List<BlogPost> bps) {
 		mUnfilteredBlogposts = bps;
-		ArrayList<FileTemplate> fileTemplates = new ArrayList<FileTemplate>();
+		ArrayList<PageTemplate> fileTemplates = new ArrayList<PageTemplate>();
 		File[] pagesTemplate = FileUtils.getFilesInDirectory(new File("."), ".*\\[.*\\]\\.\\d+\\.pagination.template");
 		// Create a filtered pagination filter for each file found
 		for (File templateFile: pagesTemplate) {
@@ -32,7 +32,7 @@ public class FilteredPaginatedPageTemplateFactory extends FileTemplateFactory {
 				// Get pagination info
 			    int perPagePagination = PaginationUtils.getPaginationNumberFromFilename(templateFile.getName());
 			    int totalPages = PaginationUtils.getTotalPaginationPages(filteredBpsAndMetadata.bps.size(), perPagePagination);
-				List<FileTemplate> templates = generateFileTemplatesForEachPage(filteredBpsAndMetadata, templateFile, 
+				List<PageTemplate> templates = generateFileTemplatesForEachPage(filteredBpsAndMetadata, templateFile, 
 						perPagePagination, totalPages);
 				fileTemplates.addAll(templates);
 			}
@@ -58,8 +58,8 @@ public class FilteredPaginatedPageTemplateFactory extends FileTemplateFactory {
 		return listOfBpsLists;
 	}
 	
-	private List<FileTemplate> generateFileTemplatesForEachPage(FilteredPostsAndMetadata filteredPosts, File file, int perPagePaginationNumber, int totalPages) {
-		List<FileTemplate> fts = new ArrayList<FileTemplate>();
+	private List<PageTemplate> generateFileTemplatesForEachPage(FilteredPostsAndMetadata filteredPosts, File file, int perPagePaginationNumber, int totalPages) {
+		List<PageTemplate> fts = new ArrayList<PageTemplate>();
 		for(int currentPage = 1;((currentPage-1)*perPagePaginationNumber)<filteredPosts.bps.size();currentPage++) {
 			List<BlogPost> subList = PaginationUtils.getSublistForPagination(filteredPosts.bps, perPagePaginationNumber, currentPage);
 			FilteredPaginatedPageTemplate filterTemplate = 

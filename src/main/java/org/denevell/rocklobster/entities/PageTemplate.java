@@ -12,11 +12,11 @@ import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
 
-public abstract class FileTemplate implements TemplatePluginsContext {
+public abstract class PageTemplate implements TemplatePluginsContext {
 	private String mContent;
 	private TemplatePluginsContext mPluginContext;
 	
-	public FileTemplate(List<BlogPost> unfilteredBlogposts) {
+	public PageTemplate(List<BlogPost> unfilteredBlogposts) {
 		mPluginContext = new TemplatePluginsContextImpl(unfilteredBlogposts);
 	}
 	@Override

@@ -6,7 +6,7 @@ import java.util.Map;
 import org.denevell.rocklobster.utils.FileUtils;
 
 
-public class PaginatedPageTemplate extends FileTemplate {
+public class PaginatedPageTemplate extends PageTemplate {
 	
 	private String mTemplateFilename;
 	private String mTemplateString;

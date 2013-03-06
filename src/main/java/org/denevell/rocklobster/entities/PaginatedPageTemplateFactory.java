@@ -8,7 +8,7 @@ import org.denevell.rocklobster.utils.FileUtils;
 import org.denevell.rocklobster.utils.PaginationUtils;
 
 
-public class PaginatedPageTemplateFactory extends FileTemplateFactory {
+public class PaginatedPageTemplateFactory extends PageTemplateFactory {
 	
 	private File[] mPagesTemplates;
 
@@ -16,12 +16,12 @@ public class PaginatedPageTemplateFactory extends FileTemplateFactory {
 		mPagesTemplates = FileUtils.getFilesInDirectory(new File("."), ".*[^\\]]\\.\\d+\\.pagination.template");
 	}
 	
-	public List<FileTemplate> generatePages(List<BlogPost> bps) {
-		List<FileTemplate> fts = new ArrayList<FileTemplate>();
+	public List<PageTemplate> generatePages(List<BlogPost> bps) {
+		List<PageTemplate> fts = new ArrayList<PageTemplate>();
 		for (File pageTemplate : mPagesTemplates) {
 			int perPagePaginationNumber = PaginationUtils.getPaginationNumberFromFilename(pageTemplate.getName());
 		    int totalPages = PaginationUtils.getTotalPaginationPages(bps.size(), perPagePaginationNumber);
-			List<FileTemplate> templateFiles = generateFileTemplatesForEachPage(bps, pageTemplate, perPagePaginationNumber, totalPages);
+			List<PageTemplate> templateFiles = generateFileTemplatesForEachPage(bps, pageTemplate, perPagePaginationNumber, totalPages);
 			fts.addAll(templateFiles);
 		}
 		return fts;
@@ -31,11 +31,11 @@ public class PaginatedPageTemplateFactory extends FileTemplateFactory {
 		this.mPagesTemplates = mPagesTemplates;
 	}
 
-	protected static List<FileTemplate> generateFileTemplatesForEachPage(List<BlogPost> bps, File file, int perPagePaginationNumber, int totalPages) {
-		List<FileTemplate> fts = new ArrayList<FileTemplate>();
+	protected static List<PageTemplate> generateFileTemplatesForEachPage(List<BlogPost> bps, File file, int perPagePaginationNumber, int totalPages) {
+		List<PageTemplate> fts = new ArrayList<PageTemplate>();
 		for(int currentPage = 1;((currentPage-1)*perPagePaginationNumber)<bps.size();currentPage++) {
 			List<BlogPost> subList = PaginationUtils.getSublistForPagination(bps, perPagePaginationNumber, currentPage);
-			FileTemplate ft = new PaginatedPageTemplate(bps, file.getName(), subList, currentPage, totalPages);
+			PageTemplate ft = new PaginatedPageTemplate(bps, file.getName(), subList, currentPage, totalPages);
 			ft.generateContent();
 			fts.add(ft);
 		}
