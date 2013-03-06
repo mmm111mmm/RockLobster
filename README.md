@@ -35,7 +35,7 @@ There are example templates in the repository.
 Single page template
 --------------------
 
-'singlepages.template' - Required file.
+**'singlepages.template'** - Required file.
 
 The template file uses the Mustache templating syntax. See the example file in this repository. Here is a sample template where you access the title metadata in your markdown file and the post content:
 
@@ -46,7 +46,7 @@ The template file uses the Mustache templating syntax. See the example file in t
 Paginated page template
 -----------------------
 
-'SOMENAME.10.pagination.template' - The number refers to how many post per page.
+**'SOMENAME.10.pagination.template'** - The number refers to how many post per page.
 
 It will create a paginated page for all your posts with 10 pages on each page. This also includes metadata pertaining the pagination (see the example). Within your template file, your Mustache syntax will look like:
 
@@ -68,7 +68,7 @@ With the {{#posts}} {{/posts}} block you can put in everything you put in the si
 Filtered paginated page template
 --------------------------------
 
-'SOMENAME_[metadata-key].10.pagination.template' - This creates multiple paginated pages. [metadata-key] related to all the values of that metadata key.
+**'SOMENAME_[metadata-key].10.pagination.template'** - This creates multiple paginated pages. [metadata-key] related to all the values of that metadata key.
 
 In the case where you have [tags] in the filename, and you have blogpost metadata which contains the tags 'stuff' and 'blar', you'd generated 'SOMENAME_stuff.html' and 'SOMENAME_blar.html'. 
 
