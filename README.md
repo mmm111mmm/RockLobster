@@ -3,9 +3,9 @@ RockLobster
 
 A simple static Blog generator for Git hosted Markdown (plus metadata) files. 
 
-It creates single pages, paginated pages and filtered paginated pages. In other words myblogpost.html, index.html and tags_yourtag.html.
+It creates single pages, paginated pages and filtered paginated pages - in other words myblogpost.html, index.html and tags_YOURTAG.html.
 
-It parses metadata at the top of your markdown files, tags: blar,blar for instance, for access in posts and plugins.
+It parses metadata at the top of your markdown files - "tags: blar,blar" for instance - for access in posts and plugins.
 
 More functionality is supported through plugins.
 
@@ -58,9 +58,9 @@ It will create a paginated page for all your posts with 10 pages on each page. T
 Filtered paginated page template
 --------------------------------
 
-'SOMENAME_[metadata].10.pagination.template' - The same as above except the [metadata] part is replaced for all the values of the metadata, 'tags' for example.
+'SOMENAME_[metadata-key].10.pagination.template' - This creates multiple paginated pages. [metadata-key] related to all the values of that metadata key.
 
-In the case where you have [tags] in the filename and you have blogpost metadata which contains the tags 'stuff', and 'blar', you'd generated 'somename_stuff.html' and 'SOMENAME_blar.html'. 
+In the case where you have [tags] in the filename, and you have blogpost metadata which contains the tags 'stuff' and 'blar', you'd generated 'SOMENAME_stuff.html' and 'SOMENAME_blar.html'. 
 
 And in the templates {{metadata_filter}} would refer to 'stuff' and 'blar' respectively.
 
@@ -77,7 +77,7 @@ The TAGNAME will be a registered plugin, the the rest of the line will be the ar
 
 All the plugins live in org.denevell.rocklobster.plugins and any classes which extend Plugin will be automatically added to the list of plugins available. TODO: Ability to add your own plugin easily.
 
-All tags plugin
+'all-tags' plugin
 ---------------
 
 This gets all the 'tags' metadata from all the blog posts and outputs them.
@@ -114,4 +114,4 @@ TODO
 * Integrate disqus?
 * Allow markdown files to be in sub folders
 * Specifying leading and ending text for text around paginated number in filename
-* Composting so there's a master template file which would contain either posts or paginated content?
+* Compositing so there's a master template file which would contain either posts or paginated content?
