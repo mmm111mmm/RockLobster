@@ -1,6 +1,5 @@
 package org.denevell.rocklobster.entities;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +21,8 @@ public class PaginatedPageTemplate extends FileTemplate {
 	 * generate all the templates based on files found in the directory, containing
 	 * the per page pagination metadata in the filename.
 	 */
-	public PaginatedPageTemplate(String templateFilename, List<BlogPost> blogPostSelection, int currentPage, int totalPages) {
+	public PaginatedPageTemplate(List<BlogPost> allBlogposts, String templateFilename, List<BlogPost> blogPostSelection, int currentPage, int totalPages) {
+		super(allBlogposts);
 		mTemplateFilename = templateFilename;
 		mTemplateString = FileUtils.getStringFromFile(mTemplateFilename);
 		mCurrentPage = currentPage;
@@ -42,7 +42,7 @@ public class PaginatedPageTemplate extends FileTemplate {
 
 	@Override
 	public Map<String, Object> getTemplateScopes() {
-		HashMap<String, Object> scopes = new HashMap<String, Object>();
+		Map<String, Object> scopes = super.getTemplateScopes();
 		scopes.put("posts", getBlogPosts());
 		scopes.put("num_pages_total", mTotalPages);
 		scopes.put("num_pages_current", String.valueOf(mCurrentPage));

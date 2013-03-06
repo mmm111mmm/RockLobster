@@ -1,7 +1,6 @@
 package org.denevell.rocklobster.entities;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,7 +19,8 @@ public class SinglePageTemplate extends FileTemplate {
 	 * But the other factories do exciting, exotic things, for various values of exotic.
 	 * @param pageTemplateFile
 	 */
-	public SinglePageTemplate(BlogPost bp, String pageTemplateFile) {
+	public SinglePageTemplate(List<BlogPost> allBlogposts, BlogPost bp, String pageTemplateFile) {
+		super(allBlogposts);
 		mBp = bp;
 		mPageTemplateString = FileUtils.getStringFromFile(pageTemplateFile);
 		if(mPageTemplateString==null) throw new RuntimeException("No singlepages.template file found in CWD.");
@@ -40,7 +40,7 @@ public class SinglePageTemplate extends FileTemplate {
 
 	@Override
 	public Map<String, Object> getTemplateScopes() {
-		    HashMap<String, Object> scopes = new HashMap<String, Object>();
+		    Map<String, Object> scopes = super.getTemplateScopes();
 		    BlogPost blogPost = getBlogPosts().get(0);
 			scopes.put("post", blogPost.getPost());
 		    scopes.put("attr", blogPost.getMetadata());

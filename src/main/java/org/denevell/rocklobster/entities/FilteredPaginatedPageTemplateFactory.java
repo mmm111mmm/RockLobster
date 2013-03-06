@@ -13,8 +13,11 @@ import com.google.common.collect.Iterables;
 
 public class FilteredPaginatedPageTemplateFactory extends FileTemplateFactory {
 
+	private List<BlogPost> mUnfilteredBlogposts;
+
 	@Override
 	public List<FileTemplate> generatePages(List<BlogPost> bps) {
+		mUnfilteredBlogposts = bps;
 		ArrayList<FileTemplate> fileTemplates = new ArrayList<FileTemplate>();
 		File[] pagesTemplate = FileUtils.getFilesInDirectory(new File("."), ".*\\[.*\\]\\.\\d+\\.pagination.template");
 		// Create a filtered pagination filter for each file found
@@ -58,7 +61,8 @@ public class FilteredPaginatedPageTemplateFactory extends FileTemplateFactory {
 		List<FileTemplate> fts = new ArrayList<FileTemplate>();
 		for(int currentPage = 1;((currentPage-1)*perPagePaginationNumber)<filteredPosts.bps.size();currentPage++) {
 			List<BlogPost> subList = PaginationUtils.getSublistForPagination(filteredPosts.bps, perPagePaginationNumber, currentPage);
-			FilteredPaginatedPageTemplate filterTemplate = new FilteredPaginatedPageTemplate(file.getName(), subList, filteredPosts.metadataKey, filteredPosts.metadataValue, currentPage, totalPages); 
+			FilteredPaginatedPageTemplate filterTemplate = 
+					new FilteredPaginatedPageTemplate(mUnfilteredBlogposts, file.getName(), subList, filteredPosts.metadataKey, filteredPosts.metadataValue, currentPage, totalPages); 
 			filterTemplate.generateContent();
 			fts.add(filterTemplate);		
 		}

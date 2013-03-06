@@ -8,9 +8,8 @@ public class FilteredPaginatedPageTemplate extends PaginatedPageTemplate {
 	private String mMetadataValue;
 	private String mMetadataKey;
 
-	public FilteredPaginatedPageTemplate(String templateFilename,
-			List<BlogPost> blogPosts, String key, String value, int currentPage, int totalPages) {
-		super(templateFilename, blogPosts, currentPage, totalPages);
+	public FilteredPaginatedPageTemplate(List<BlogPost> unfilteredBlogpost, String templateFilename, List<BlogPost> blogPosts, String key, String value, int currentPage, int totalPages) {
+		super(unfilteredBlogpost, templateFilename, blogPosts, currentPage, totalPages);
 		this.mMetadataKey = key;
 		this.mMetadataValue = value;
 	}

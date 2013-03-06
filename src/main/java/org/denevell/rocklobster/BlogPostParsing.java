@@ -9,18 +9,19 @@ import java.util.Scanner;
 
 import org.denevell.rocklobster.entities.BlogPost;
 import org.denevell.rocklobster.utils.GitUtils;
+import org.eclipse.jgit.lib.Repository;
 
 
 public class BlogPostParsing {
 	
-	public static ArrayList<BlogPost> parseFilesInDirectory(String directory) throws Exception {
+	public static ArrayList<BlogPost> parseFilesInDirectory(String directory, Repository fileGitRepo) throws Exception {
 		ArrayList<BlogPost> bps = new ArrayList<BlogPost>();
 		File[] files = new File(directory).listFiles();
 		for (File f: files) {
 			if(!f.isFile()) continue;
 			BlogPost bp;
 			try {
-				bp = parseStringIntoPostAndMetadata(f);
+				bp = parseStringIntoPostAndMetadata(f, fileGitRepo);
 				bps.add(bp);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -29,7 +30,7 @@ public class BlogPostParsing {
 		return bps;
 	}
 
-	public static BlogPost parseStringIntoPostAndMetadata(File f) throws Exception {
+	public static BlogPost parseStringIntoPostAndMetadata(File f, Repository fileGitRepo) throws Exception {
 		Scanner in = new Scanner(new FileReader(f.getAbsoluteFile()));
 		BlogPost bp = new BlogPost();
 		boolean endOfMetadata = false;
@@ -46,13 +47,13 @@ public class BlogPostParsing {
 			}
 		}
 		// Manually add Title and date if doesn't exist
-		addMissingMetadata(f, bp);
+		addMissingMetadata(f, bp, fileGitRepo);
 		bp.setPost(str);
 		bp.setFilename(f.getName());
 		return bp;
 	}
 
-	private static void addMissingMetadata(File f, BlogPost bp) throws Exception {
+	private static void addMissingMetadata(File f, BlogPost bp, Repository fileGitRepo) throws Exception {
 		String name2 = f.getName();
 		if(!bp.getMetadata().containsKey("title")) {
 			String name = name2;
@@ -66,7 +67,7 @@ public class BlogPostParsing {
 		if(!bp.getMetadata().containsKey("date")) {
 			long lastModified = f.lastModified();
 			try {
-				lastModified = GitUtils.getFirstCommitDataForFile(Main.sFileGitRepo, name2);
+				lastModified = GitUtils.getFirstCommitDataForFile(fileGitRepo, name2);
 			} catch(Exception e) {
 				e.printStackTrace();
 			}

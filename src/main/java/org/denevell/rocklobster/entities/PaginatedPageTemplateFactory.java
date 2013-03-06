@@ -35,7 +35,7 @@ public class PaginatedPageTemplateFactory extends FileTemplateFactory {
 		List<FileTemplate> fts = new ArrayList<FileTemplate>();
 		for(int currentPage = 1;((currentPage-1)*perPagePaginationNumber)<bps.size();currentPage++) {
 			List<BlogPost> subList = PaginationUtils.getSublistForPagination(bps, perPagePaginationNumber, currentPage);
-			FileTemplate ft = new PaginatedPageTemplate(file.getName(), subList, currentPage, totalPages);
+			FileTemplate ft = new PaginatedPageTemplate(bps, file.getName(), subList, currentPage, totalPages);
 			ft.generateContent();
 			fts.add(ft);
 		}

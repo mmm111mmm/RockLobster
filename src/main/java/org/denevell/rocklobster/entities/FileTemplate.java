@@ -5,15 +5,26 @@ import java.io.StringWriter;
 import java.util.List;
 import java.util.Map;
 
+import org.denevell.rocklobster.plugins.TemplatePluginsContext;
+import org.denevell.rocklobster.plugins.TemplatePluginsContextImpl;
+
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;
 import com.github.mustachejava.MustacheFactory;
 
-public abstract class FileTemplate {
+public abstract class FileTemplate implements TemplatePluginsContext {
 	private String mContent;
+	private TemplatePluginsContext mPluginContext;
+	
+	public FileTemplate(List<BlogPost> unfilteredBlogposts) {
+		mPluginContext = new TemplatePluginsContextImpl(unfilteredBlogposts);
+	}
+	@Override
+	public Map<String, Object> getTemplateScopes() { 
+		return mPluginContext.getTemplateScopes();
+	}
 	public abstract List<BlogPost> getBlogPosts();
 	public abstract String getTemplate();
-	public abstract Map<String, Object> getTemplateScopes();
 	public abstract String getPostProcessedFilename();
 	public void generateContent() {
 	    MustacheFactory mf = new DefaultMustacheFactory();		

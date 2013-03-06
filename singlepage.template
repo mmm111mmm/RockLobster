@@ -4,6 +4,7 @@
 			{{#attr}}{{title}}{{/attr}}
 		</title>
 	</head>
+			{{#plugins}}tags{{/plugins}}
 	<body>
 		<div class="blog-title">
 			{{#attr}}{{title}}{{/attr}}

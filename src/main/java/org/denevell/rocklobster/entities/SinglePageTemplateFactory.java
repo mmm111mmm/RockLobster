@@ -11,7 +11,7 @@ public class SinglePageTemplateFactory extends FileTemplateFactory {
 	public List<FileTemplate> generatePages(List<BlogPost> bps) {
 		List<FileTemplate> fts = new ArrayList<FileTemplate>();
 		for (BlogPost blogPost : bps) {
-			SinglePageTemplate singlePageTemplate = new SinglePageTemplate(blogPost, SINGLEPAGE_TEMPLATE_LOCATION);
+			SinglePageTemplate singlePageTemplate = new SinglePageTemplate(bps, blogPost, SINGLEPAGE_TEMPLATE_LOCATION);
 			singlePageTemplate.generateContent();
 			fts.add(singlePageTemplate);
 		}
