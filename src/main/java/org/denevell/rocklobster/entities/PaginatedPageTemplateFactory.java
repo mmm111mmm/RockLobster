@@ -18,8 +18,7 @@ public class PaginatedPageTemplateFactory extends FileTemplateFactory {
 	
 	public List<FileTemplate> generatePages(List<BlogPost> bps) {
 		List<FileTemplate> fts = new ArrayList<FileTemplate>();
-		File[] pagesTemplates = mPagesTemplates;
-		for (File pageTemplate : pagesTemplates) {
+		for (File pageTemplate : mPagesTemplates) {
 			int perPagePaginationNumber = PaginationUtils.getPaginationNumberFromFilename(pageTemplate.getName());
 		    int totalPages = PaginationUtils.getTotalPaginationPages(bps.size(), perPagePaginationNumber);
 			List<FileTemplate> templateFiles = generateFileTemplatesForEachPage(bps, pageTemplate, perPagePaginationNumber, totalPages);

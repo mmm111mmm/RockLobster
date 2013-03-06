@@ -19,7 +19,8 @@ public abstract class FileTemplate {
 	    MustacheFactory mf = new DefaultMustacheFactory();		
 		Mustache mustache = mf.compile(new StringReader(getTemplate()), "");
 	    StringWriter writer = new StringWriter();	    
-	    mustache.execute(writer, getTemplateScopes());
+	    Map<String, Object> templateScopes = getTemplateScopes();
+		mustache.execute(writer, templateScopes);
 	    writer.flush();	
 	    mContent = writer.getBuffer().toString();
 	}

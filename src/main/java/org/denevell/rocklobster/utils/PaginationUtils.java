@@ -1,6 +1,9 @@
 package org.denevell.rocklobster.utils;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -8,9 +11,9 @@ import org.denevell.rocklobster.entities.BlogPost;
 
 public class PaginationUtils {
 	
-	public static int getPaginationNumberFromFilename(String absoluteFileName) {
+	public static int getPaginationNumberFromFilename(String fileName) {
 		Pattern p = Pattern.compile(".*\\.(\\d+)\\.pagination.template");
-		Matcher m = p.matcher(absoluteFileName);
+		Matcher m = p.matcher(fileName);
 		m.matches();
 		String num = m.group(1);
 		return Integer.valueOf(num);
@@ -27,5 +30,30 @@ public class PaginationUtils {
 	public static int getTotalPaginationPages(int numOfBlogposts, int perPagePaginationNumber) {
 		return (int) Math.ceil((double)numOfBlogposts/ (double)perPagePaginationNumber);
 	}
+	
+	public static String getMetadataAttributeFromFilename(String filename) {
+		Pattern p = Pattern.compile(".*\\[(.*)\\].*");
+		Matcher m = p.matcher(filename);
+		m.matches();
+		String metadataAttribute = m.group(1);
+		return metadataAttribute;
+	}
+
+	public static String[] getValuesOfMetadata(final String metadataKey, List<BlogPost> bps) {
+		Set<String> allValues = new HashSet<String>();
+		for (BlogPost blogPost : bps) {
+			List<String> splitList = getSplitMetadataOfKey(metadataKey, blogPost);
+			allValues.addAll(splitList);
+		}
+		return allValues.toArray(new String[0]);
+	}
+
+	private static List<String> getSplitMetadataOfKey(String metadataKey, BlogPost blogPost) {
+		String values = blogPost.getMetadata().get(metadataKey);
+		String[] split = values.split("[\\ ,|]");
+		List<String> splitList = Arrays.asList(split);
+		return splitList;
+	}	
+	
 
 }

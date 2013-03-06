@@ -3,54 +3,42 @@ package org.denevell.rocklobster.entities;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.denevell.rocklobster.utils.FileUtils;
+import org.denevell.rocklobster.utils.PaginationUtils;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 
-public class FilteredPaginatedPageTemplateFactory extends PaginatedPageTemplateFactory {
+public class FilteredPaginatedPageTemplateFactory extends FileTemplateFactory {
 
 	@Override
 	public List<FileTemplate> generatePages(List<BlogPost> bps) {
 		ArrayList<FileTemplate> fileTemplates = new ArrayList<FileTemplate>();
 		File[] pagesTemplate = FileUtils.getFilesInDirectory(new File("."), ".*\\[.*\\]\\.\\d+\\.pagination.template");
-		for (File fileTemplate : pagesTemplate) {
-			String metadataKey = getMetadataAttributeFromFilename(fileTemplate.getName());
-			List<FilteredBpsAndMetadata> filteredBpses = filterBlogpostsByAttribute(metadataKey, bps);
-			List<FileTemplate> paginatedTemplates = getFileTemplatesByFilteredBlogPosts(fileTemplate, filteredBpses);
-			fileTemplates.addAll(paginatedTemplates);
+		// Create a filtered pagination filter for each file found
+		for (File templateFile: pagesTemplate) {
+			// Filter posts by meta data value
+			String metadataKey = PaginationUtils.getMetadataAttributeFromFilename(templateFile.getName());
+			String[] metadataValues = PaginationUtils.getValuesOfMetadata(metadataKey, bps);
+			List<FilteredPostsAndMetadata> filteredBlogPosts = filterBlogpostsByMetadataAttributes(metadataKey, metadataValues, bps);
+		    // Generate a template for each filter of posts
+			for (FilteredPostsAndMetadata filteredBpsAndMetadata : filteredBlogPosts) {
+				// Get pagination info
+			    int perPagePagination = PaginationUtils.getPaginationNumberFromFilename(templateFile.getName());
+			    int totalPages = PaginationUtils.getTotalPaginationPages(filteredBpsAndMetadata.bps.size(), perPagePagination);
+				List<FileTemplate> templates = generateFileTemplatesForEachPage(filteredBpsAndMetadata, templateFile, 
+						perPagePagination, totalPages);
+				fileTemplates.addAll(templates);
+			}
 		}
 		return fileTemplates;
 	}
 
-	private List<FileTemplate> getFileTemplatesByFilteredBlogPosts(File file, List<FilteredBpsAndMetadata> filteredBpses) {
-		List<FileTemplate> allFilteredPaginatedTemplates = new ArrayList<FileTemplate>();;
-		for (FilteredBpsAndMetadata filteredBpsByMetadata : filteredBpses) {
-			setPagesTemplates(new File[] {file});
-			List<FileTemplate> paginatedTemplatesForTheFilter = super.generatePages(filteredBpsByMetadata.bps);
-			// Change the filename to replace metadata part, and add in the metadata the file tempalte scope
-			replaceMetadataFromFilenameAndAddMetadataTemplateScope(paginatedTemplatesForTheFilter, filteredBpsByMetadata);
-			allFilteredPaginatedTemplates.addAll(paginatedTemplatesForTheFilter);
-		}
-		return allFilteredPaginatedTemplates;
-	}
-
-	private List<FilteredBpsAndMetadata> filterBlogpostsByAttribute(final String metadataKey, List<BlogPost> bps) {
-		// Get all values for the metadata
-		Set<String> allValues = new HashSet<String>();
-		for (BlogPost blogPost : bps) {
-			List<String> splitList = getSplitMetadataOfKey(metadataKey, blogPost);
-			allValues.addAll(splitList);
-		}
-		// Filter the bps by each value
-		List<FilteredBpsAndMetadata> listOfBpsLists = new ArrayList<FilteredBpsAndMetadata>();
-		for (final String metaDatavalue : allValues) {
+	private List<FilteredPostsAndMetadata> filterBlogpostsByMetadataAttributes(final String metadataKey, String[] allMetadataValues, List<BlogPost> bps) {
+		List<FilteredPostsAndMetadata> listOfBpsLists = new ArrayList<FilteredPostsAndMetadata>();
+		for (final String metaDatavalue : allMetadataValues) {
 			if(metaDatavalue.trim().length()==0) continue;
 			Iterable<BlogPost> filteredBpsIterable = Iterables.filter(bps, new Predicate<BlogPost>() {
 				public boolean apply(BlogPost p) {
@@ -58,48 +46,33 @@ public class FilteredPaginatedPageTemplateFactory extends PaginatedPageTemplateF
 					return value.contains(metaDatavalue);
 				}
 			});
-			BlogPost[] filteredBps = Iterables.toArray(filteredBpsIterable, BlogPost.class);
-			List<BlogPost> filteredBpsAsList = Arrays.asList(filteredBps);
-			FilteredBpsAndMetadata filteredBpsByMetadata = new FilteredBpsAndMetadata(metaDatavalue, metadataKey, filteredBpsAsList);
+			List<BlogPost> filteredBps = Arrays.asList(Iterables.toArray(filteredBpsIterable, BlogPost.class));
+			FilteredPostsAndMetadata filteredBpsByMetadata = new FilteredPostsAndMetadata(metaDatavalue, metadataKey, filteredBps);
 			listOfBpsLists.add(filteredBpsByMetadata);
 		}
 		
 		return listOfBpsLists;
 	}
-
-	private List<String> getSplitMetadataOfKey(String metadataKey, BlogPost blogPost) {
-		String values = blogPost.getMetadata().get(metadataKey);
-		String[] split = values.split("[\\ ,|]");
-		List<String> splitList = Arrays.asList(split);
-		return splitList;
-	}
-
-	private String getMetadataAttributeFromFilename(String filename) {
-		Pattern p = Pattern.compile(".*\\[(.*)\\].*");
-		Matcher m = p.matcher(filename);
-		m.matches();
-		String metadataAttribute = m.group(1);
-		return metadataAttribute;
-	}
 	
-	private void replaceMetadataFromFilenameAndAddMetadataTemplateScope(List<FileTemplate> paginatedTemplatesForTheFilter, FilteredBpsAndMetadata metadata) {
-		for (FileTemplate ft : paginatedTemplatesForTheFilter) {
-			PaginatedPageTemplate filteredFile = (PaginatedPageTemplate) ft;
-			String replace = ft.getPostProcessedFilename().replace("["+metadata.metadataKey+"]", metadata.metaDatavalue);
-			filteredFile.setPostProcessedFilname(replace);
-			ft.getTemplateScopes().put("metadata_filter", metadata.metaDatavalue);
-			ft.generateContent();
+	private List<FileTemplate> generateFileTemplatesForEachPage(FilteredPostsAndMetadata filteredPosts, File file, int perPagePaginationNumber, int totalPages) {
+		List<FileTemplate> fts = new ArrayList<FileTemplate>();
+		for(int currentPage = 1;((currentPage-1)*perPagePaginationNumber)<filteredPosts.bps.size();currentPage++) {
+			List<BlogPost> subList = PaginationUtils.getSublistForPagination(filteredPosts.bps, perPagePaginationNumber, currentPage);
+			FilteredPaginatedPageTemplate filterTemplate = new FilteredPaginatedPageTemplate(file.getName(), subList, filteredPosts.metadataKey, filteredPosts.metadataValue, currentPage, totalPages); 
+			filterTemplate.generateContent();
+			fts.add(filterTemplate);		
 		}
-	}
-	
-	private class FilteredBpsAndMetadata {
+		return fts;
+	}	
+
+	public class FilteredPostsAndMetadata {
 		public List<BlogPost> bps ;
-		public String metaDatavalue;
 		public String metadataKey;
-		public FilteredBpsAndMetadata(String metaDatavalue, String metadataKey, List<BlogPost> filteredBpsAsList) {
-			this.metaDatavalue = metaDatavalue;
+		public String metadataValue;
+		public FilteredPostsAndMetadata(String metaDatavalue, String metadataKey, List<BlogPost> filteredBps) {
+			this.metadataValue = metaDatavalue;
 			this.metadataKey = metadataKey;
-			this.bps = filteredBpsAsList;
+			this.bps = filteredBps;
 		}
 	}
 }
