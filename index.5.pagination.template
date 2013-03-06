@@ -13,7 +13,9 @@
 			{{#posts}}
 			<div class="blog-posts-entry">
 				<div class="blog-posts-entry-title">
-					{{#metadata}}{{& title}}{{/metadata}}
+					<a href="{{basefilename}}.html">
+						{{#metadata}}{{& title}}{{/metadata}}
+					</a>
 				</div>
 				<div class="blog-posts-entry-post">
 					{{& post}}

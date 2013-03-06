@@ -1,8 +1,8 @@
 package org.denevell.rocklobster.entities;
 import java.util.HashMap;
 
-
 public class BlogPost {
+
 	
 		private HashMap<String, String> metadata = new HashMap<String, String>();
 		private String post = "";
@@ -38,6 +38,15 @@ public class BlogPost {
 		
 		public String getFilename() {
 			return filename;
+		}
+		
+		/**
+		 * If we have hello.txt, it will give us hello.
+		 * @return
+		 */
+		public String getBasefilename() {
+			String[] strs = new StringBuffer(getFilename()).reverse().toString().split("\\.", 2);
+			return new StringBuffer(strs[1]).reverse().toString();
 		}
 
 }

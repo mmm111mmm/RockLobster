@@ -32,6 +32,7 @@ Single page template
 
 The template file uses the Mustache templating syntax. See the example file in this repository. Here is a sample template where you access the title metadata in your markdown file and the post content:
 
+        	{{basefilename}} // I.e. If you markdown file was sup.md it would be 'sup'.
         	{{#attr}}{{title}}{{/attr}}
         	{{& post}}
             
@@ -54,6 +55,8 @@ It will create a paginated page for all your posts with 10 pages on each page. T
 		Page {{num_pages_current}} of {{num_pages_total}}
 		{{#next_page_relative_url}}<a href="{{next_page_relative_url}}">Next</a>{{/next_page_relative_url}} 
 		{{#previous_page_relative_url}}<a href="{{previous_page_relative_url}}">Previous</a>{{/previous_page_relative_url}}
+
+With the {{#posts}} {{/posts}} block you can put in everything you put in the single page template above.
 
 Filtered paginated page template
 --------------------------------
