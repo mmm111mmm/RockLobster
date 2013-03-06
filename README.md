@@ -1,11 +1,17 @@
 RockLobster
 ===========
 
-A simple static Blog generator for Git hosted Markdown (plus metadata) files. 
+A simple static Blog generator for Git hosted Markdown (plus metadata) files.
+
+		tags: random, story
+		title: And here's a story about... being free
+		date: 2013-01-01 01:01:01 +500
+		
+		Some Mardown text here
 
 It creates single pages, paginated pages and filtered paginated pages - in other words myblogpost.html, index.html and tags_YOURTAG.html.
 
-It parses metadata at the top of your markdown files - "tags: blar,blar" for instance - for access in posts and plugins.
+It allows you to use the metadata in posts, paginated posts and plugins.
 
 More functionality is supported through plugins.
 
