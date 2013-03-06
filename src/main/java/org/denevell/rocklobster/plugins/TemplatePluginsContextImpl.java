@@ -35,13 +35,15 @@ public class TemplatePluginsContextImpl implements TemplatePluginsContext {
 		hm.put("plugins", new Function<String, String>() {
 			@Override
 			public String apply(String input) {
-				String[] split = input.split(" ");
+				String[] split = input.split("\\|\\|", 2);
 				String pluginName = split[0];
+				String pluginArgs = split[1];
 				Plugin plugin = mPluginsHash.get(pluginName);
 				if(plugin==null) {
 					return "Plugin not found";
 				} else {
-					return plugin.getOuput(mAllBlogposts);
+					String[] arg = pluginArgs.split("\\|\\|");
+					return plugin.getOuput(mAllBlogposts, arg);
 				}
 			}
 		});

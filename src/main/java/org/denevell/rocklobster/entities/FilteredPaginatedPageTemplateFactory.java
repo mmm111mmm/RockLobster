@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.denevell.rocklobster.utils.FileUtils;
+import org.denevell.rocklobster.utils.MetadataUtils;
 import org.denevell.rocklobster.utils.PaginationUtils;
 
 import com.google.common.base.Predicate;
@@ -24,7 +25,7 @@ public class FilteredPaginatedPageTemplateFactory extends FileTemplateFactory {
 		for (File templateFile: pagesTemplate) {
 			// Filter posts by meta data value
 			String metadataKey = PaginationUtils.getMetadataAttributeFromFilename(templateFile.getName());
-			String[] metadataValues = PaginationUtils.getValuesOfMetadata(metadataKey, bps);
+			String[] metadataValues = MetadataUtils.getDistinctValuesOfMetadata(metadataKey, bps);
 			List<FilteredPostsAndMetadata> filteredBlogPosts = filterBlogpostsByMetadataAttributes(metadataKey, metadataValues, bps);
 		    // Generate a template for each filter of posts
 			for (FilteredPostsAndMetadata filteredBpsAndMetadata : filteredBlogPosts) {

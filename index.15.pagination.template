@@ -5,6 +5,10 @@
 		</title>
 	</head>
 	<body>
+		<div class="blog-title">Tech blog, innit</div>
+                <hr />
+                {{#plugins}}all-tags||<div>||</div>||<a href="category_[tagname].html">||</a>|| &#124; {{/plugins}}
+                <hr />
 		<div class="blog-posts">
 			{{#posts}}
 			<div class="blog-posts-entry">
