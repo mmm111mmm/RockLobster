@@ -103,6 +103,22 @@ E.g:
 
                 {{#plugins}}all-tags||<div>||</div>||<a href="category_[tagname].html">||</a>|| &#124; ||13{{/plugins}}
 
+'single-page-tags' plugin
+---------------
+
+The outputs the tags that are passed into it, but formatted using the arguments
+
+* Argument 1: the tags. Usually found via {{#attr}}{{tags}}{{/attr}}
+* Arguments 2 and 3: beginning and end of the wrapper around the whole block.
+* Arguments 4 and 5: beginning and end of the wrapper around each tag
+* Argument 6: The divider inbetween each element.
+
+At argument 4, any text with [tagname] is replaced for the current tag name.
+
+E.g:
+
+		{{#plugins}}single-page-tags||{{#attr}}{{tags}}{{/attr}}||<div>||</div>||<a href="category_[tagname].html">||</a>|| &#124; {{/plugins}}
+
 'pretty-date' plugin
 ---------------
 
@@ -113,10 +129,9 @@ This uses the jchronic natural language parsing algorithm to convert text to a d
 
 		Posted: {{#plugins}}pretty-date||{{#attr}}{{date}}{{/attr}}||EEEE d MMMM yyyy, h:ma{{/plugins}}
 
-
 TODO
 ====
-* Sort blog posts by git date or metadata date
+* ### Sort blog posts by git date or metadata date
 * ~~Specify blog url from the command line~~
 * ~~Specify where to put the output html post files~~
 * ~~Remove .md from output html filename~~
@@ -135,8 +150,8 @@ TODO
 Minor: 
 * Specifying leading and ending text for text around paginated number in filename
 * Allow '.', and '..' for the output directory.
-* Integrate disqus?
-* Plugin: Pretty date
-* Plugin: Single post tags
+* ### Integrate disqus? 
+* ### Plugin: Pretty date 
+* ~~Plugin: Single post tags~~
 * Plugin: Content abbreviator for index.html posts
 * Gradle task to run the jar after compilation
