@@ -6,7 +6,7 @@ import java.util.List;
 import org.denevell.rocklobster.entities.BlogPost;
 import org.denevell.rocklobster.utils.MetadataUtils;
 
-public class TagsPlugin implements Plugin {
+public class AllTagsPlugin implements Plugin {
 
 	@Override
 	public String getOuput(List<BlogPost> bps, String[] args) { 

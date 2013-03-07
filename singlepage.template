@@ -12,7 +12,9 @@
 			{{& post}}
 		<div>
 		<div class="blog-tags">
-			Tags: {{#attr}}{{tags}}{{/attr}}
+	       {{#plugins}}single-page-tags||{{#attr}}{{tags}}{{/attr}}||<div>||</div>||<a href="category_[tagname].html">||</a>|| &#124; {{/plugins}}
+		
+			Tags: 
 		<div>
 		<div class="blog-date">
 			Posted: {{#attr}}{{date}}{{/attr}}
