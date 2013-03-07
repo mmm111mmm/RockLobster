@@ -5,16 +5,22 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
 
 import org.denevell.rocklobster.entities.BlogPost;
 import org.denevell.rocklobster.utils.GitUtils;
 import org.eclipse.jgit.lib.Repository;
 
+import com.mdimension.jchronic.Chronic;
+import com.mdimension.jchronic.utils.Span;
+
 
 public class BlogPostParsing {
 	
-	public static ArrayList<BlogPost> parseFilesInDirectory(String directory, Repository fileGitRepo) throws Exception {
+	public static List<BlogPost> parseFilesInDirectory(String directory, Repository fileGitRepo) throws Exception {
 		ArrayList<BlogPost> bps = new ArrayList<BlogPost>();
 		File[] files = new File(directory).listFiles();
 		for (File f: files) {
@@ -27,7 +33,31 @@ public class BlogPostParsing {
 				e.printStackTrace();
 			}
 		}
-		return bps;
+		// Sort blog posts
+		BlogPost[] sortedArray = bps.toArray(new BlogPost[0]);
+		Arrays.sort(sortedArray, new Comparator<BlogPost>() {
+
+			@Override
+			public int compare(BlogPost o1, BlogPost o2) {
+				String dateString1 = o1.getMetadata().get("date");
+				String dateString2 = o2.getMetadata().get("date");
+				dateString1 = dateString1.replaceAll("-\\d\\d\\d\\d", ""); // jchronic doesn't like negative time zones...
+				dateString2 = dateString2.replaceAll("-\\d\\d\\d\\d", ""); // jchronic doesn't like negative time zones...
+				Span blogPostDateSpan1 = Chronic.parse(dateString1);
+				Span blogPostDateSpan2 = Chronic.parse(dateString2);
+				long blogPost1 = (blogPostDateSpan1==null) ? 0 : blogPostDateSpan1.getBegin();
+				long blogPost2 = (blogPostDateSpan2==null) ? 0 : blogPostDateSpan2.getBegin();
+				// TODO: log problems
+				if(blogPost1 == blogPost2) {
+					return 0;
+				} else if(blogPost1 < blogPost2) {
+					return 1;
+				} else {
+					return -1;
+				}
+			}
+		});
+		return Arrays.asList(sortedArray);
 	}
 
 	public static BlogPost parseStringIntoPostAndMetadata(File f, Repository fileGitRepo) throws Exception {

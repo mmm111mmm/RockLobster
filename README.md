@@ -131,7 +131,7 @@ This uses the jchronic natural language parsing algorithm to convert text to a d
 
 TODO
 ====
-* ### Sort blog posts by git date or metadata date
+* ~~Sort blog posts by git date or metadata date~~
 * ~~Specify blog url from the command line~~
 * ~~Specify where to put the output html post files~~
 * ~~Remove .md from output html filename~~
@@ -151,7 +151,9 @@ Minor:
 * Specifying leading and ending text for text around paginated number in filename
 * Allow '.', and '..' for the output directory.
 * ### Integrate disqus? 
-* ### Plugin: Pretty date 
+* ~~Plugin: Pretty date~~
 * ~~Plugin: Single post tags~~
 * Plugin: Content abbreviator for index.html posts
 * Gradle task to run the jar after compilation
+* Log problems, log4j?
+* Sort tags alphabetically in tags plugins
