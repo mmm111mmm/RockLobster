@@ -1,11 +1,18 @@
 RockLobster
 ===========
 
-A simple static Blog generator for Git hosted Markdown (plus metadata) files. 
+A simple static Blog generator for Git hosted Markdown (plus metadata) files.
+
+		tags: random, story
+		title: And here's a story about... being free
+		date: 2013-01-01 01:01:01 +500
+		some-other-metadata: hiya
+		
+		Some Mardown text here
 
 It creates single pages, paginated pages and filtered paginated pages - in other words myblogpost.html, index.html and tags_YOURTAG.html.
 
-It parses metadata at the top of your markdown files - "tags: blar,blar" for instance - for access in posts and plugins.
+It allows you to use the metadata in posts, paginated posts and plugins.
 
 More functionality is supported through plugins.
 
@@ -28,7 +35,7 @@ There are example templates in the repository.
 Single page template
 --------------------
 
-'singlepages.template' - Required file.
+**'singlepages.template'** - Required file.
 
 The template file uses the Mustache templating syntax. See the example file in this repository. Here is a sample template where you access the title metadata in your markdown file and the post content:
 
@@ -39,7 +46,7 @@ The template file uses the Mustache templating syntax. See the example file in t
 Paginated page template
 -----------------------
 
-'SOMENAME.10.pagination.template' - The number refers to how many post per page.
+**'SOMENAME.10.pagination.template'** - The number refers to how many post per page.
 
 It will create a paginated page for all your posts with 10 pages on each page. This also includes metadata pertaining the pagination (see the example). Within your template file, your Mustache syntax will look like:
 
@@ -61,7 +68,7 @@ With the {{#posts}} {{/posts}} block you can put in everything you put in the si
 Filtered paginated page template
 --------------------------------
 
-'SOMENAME_[metadata-key].10.pagination.template' - This creates multiple paginated pages. [metadata-key] related to all the values of that metadata key.
+**'SOMENAME_[metadata-key].10.pagination.template'** - This creates multiple paginated pages. [metadata-key] related to all the values of that metadata key.
 
 In the case where you have [tags] in the filename, and you have blogpost metadata which contains the tags 'stuff' and 'blar', you'd generated 'SOMENAME_stuff.html' and 'SOMENAME_blar.html'. 
 
@@ -105,17 +112,20 @@ TODO
 * ~~Optional template files found in CWD to use.~~
 * ~~Capitalisation in blog attributes - make them all lowercase on parsing?~~
 * ~~Ant build.xml / Gradle? - sod Eclipse~~
-* Gradle task to run the jar after compilation
 * ~~Pagination for index.html etc~~
 * ~~Pagination filter based on blog post attributes - category_[metadata.tags].15.pages.template ?~~
 * ~~Turn off pagination when specified as 0 - just set it really high, the first page will be just index.html anyway.~~
 * ~~Plugins~~
  * ~~Tags plugin~~
- * Single post tags plugin
- * Pretty date plugin 
- * Content abbreviator for index.html posts
  * Ability to easily add a new plugin
-* Integrate disqus?
 * Allow markdown files to be in sub folders
-* Specifying leading and ending text for text around paginated number in filename
 * Compositing so there's a master template file which would contain either posts or paginated content?
+
+Minor: 
+* Specifying leading and ending text for text around paginated number in filename
+* Allow '.', and '..' for the output directory.
+* Integrate disqus?
+* Plugin: Pretty date
+* Plugin: Single post tags
+* Plugin: Content abbreviator for index.html posts
+* Gradle task to run the jar after compilation
