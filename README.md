@@ -103,6 +103,17 @@ E.g:
 
                 {{#plugins}}all-tags||<div>||</div>||<a href="category_[tagname].html">||</a>|| &#124; ||13{{/plugins}}
 
+'pretty-date' plugin
+---------------
+
+This uses the jchronic natural language parsing algorithm to convert text to a date. 
+
+* Argument 1: the date string, usually {{#attr}}{{date}}{{/attr}}.
+* Argument 2: the date format string for output, conforming to http://docs.oracle.com/javase/1.4.2/docs/api/java/text/SimpleDateFormat.html 
+
+		Posted: {{#plugins}}pretty-date||{{#attr}}{{date}}{{/attr}}||EEEE d MMMM yyyy, h:ma{{/plugins}}
+
+
 TODO
 ====
 * Sort blog posts by git date or metadata date
