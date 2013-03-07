@@ -103,6 +103,23 @@ E.g:
 
                 {{#plugins}}all-tags||<div>||</div>||<a href="category_[tagname].html">||</a>|| &#124; ||13{{/plugins}}
 
+'single-page-tags' plugin
+---------------
+
+The outputs the tags that are passed into it, but formatted using the arguments
+
+* Argument 1: the tags. Usually found via {{#attr}}{{tags}}{{/attr}}
+* Arguments 2 and 3: beginning and end of the wrapper around the whole block.
+* Arguments 4 and 5: beginning and end of the wrapper around each tag
+* Argument 6: The divider inbetween each element.
+
+At argument 4, any text with [tagname] is replaced for the current tag name.
+
+E.g:
+
+		{{#plugins}}single-page-tags||{{#attr}}{{tags}}{{/attr}}||<div>||</div>||<a href="category_[tagname].html">||</a>|| &#124; {{/plugins}}
+
+
 TODO
 ====
 * Sort blog posts by git date or metadata date
