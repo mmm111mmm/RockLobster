@@ -71,7 +71,7 @@ public class BlogPostParsing {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
-			SimpleDateFormat sdf = new SimpleDateFormat("yy-MM-dd HH:mm:ss Z");
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 			bp.addMetadata("date",sdf.format(lastModified));
 		} 
 	}

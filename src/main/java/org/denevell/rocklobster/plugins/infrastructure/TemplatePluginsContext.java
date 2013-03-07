@@ -1,4 +1,4 @@
-package org.denevell.rocklobster.plugins;
+package org.denevell.rocklobster.plugins.infrastructure;
 
 import java.util.Map;
 

@@ -5,8 +5,8 @@ import java.io.StringWriter;
 import java.util.List;
 import java.util.Map;
 
-import org.denevell.rocklobster.plugins.TemplatePluginsContext;
-import org.denevell.rocklobster.plugins.TemplatePluginsContextImpl;
+import org.denevell.rocklobster.plugins.infrastructure.TemplatePluginsContext;
+import org.denevell.rocklobster.plugins.infrastructure.TemplatePluginsContextImpl;
 
 import com.github.mustachejava.DefaultMustacheFactory;
 import com.github.mustachejava.Mustache;

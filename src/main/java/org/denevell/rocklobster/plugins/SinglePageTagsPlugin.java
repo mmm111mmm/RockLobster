@@ -3,6 +3,7 @@ package org.denevell.rocklobster.plugins;
 import java.util.List;
 
 import org.denevell.rocklobster.entities.BlogPost;
+import org.denevell.rocklobster.plugins.infrastructure.Plugin;
 
 public class SinglePageTagsPlugin implements Plugin {
 
