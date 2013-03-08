@@ -1,7 +1,7 @@
 RockLobster
 ===========
 
-A simple static Blog generator for Git hosted Markdown (plus metadata) files.
+A simple static Blog generator for Git-hosted Markdown (plus metadata) files.
 
 		tags: random, story
 		title: And here's a story about... being free
