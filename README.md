@@ -16,6 +16,18 @@ It allows you to use the metadata in posts, paginated posts and plugins.
 
 More functionality is supported through plugins.
 
+Features
+========
+
+* Automatically fetches posts from your git repository
+* Page pagintion for index.html etc.
+* Filtered paginated pages based on metadata (i.e. a paginated page for all your tags, e.g 'tags_stories.html')
+* Automatically adds dats as the git commit date, unless 'date' metadata exists
+* Manipulate the posts and metdata using the Mustache templating language
+* Fuzzy date metadata matching in the posts
+* Tags (via plugins)
+* Pretty dates (via plugins)
+
 Running (from the repository)
 =============================
 
@@ -155,5 +167,5 @@ Minor:
 * ~~Plugin: Single post tags~~
 * Plugin: Content abbreviator for index.html posts
 * Gradle task to run the jar after compilation
-* Log problems, log4j?
+* Log problems especially for problems parsing the date with jchronic, log4j?
 * Sort tags alphabetically in tags plugins
