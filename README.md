@@ -22,9 +22,9 @@ Features
 * Automatically fetches posts from your git repository
 * Page pagintion for index.html etc.
 * Filtered paginated pages based on metadata (i.e. a paginated page for all your tags, e.g 'tags_stories.html')
-* Automatically adds dats as the git commit date, unless 'date' metadata exists
+* Automatically adds dates as the git commit date, unless 'date' metadata exists
 * Manipulate the posts and metdata using the Mustache templating language
-* Fuzzy date metadata matching in the posts
+* Fuzzy date metadata matching in the posts (using jchronic)
 * Tags (via plugins)
 * Pretty dates (via plugins)
 
