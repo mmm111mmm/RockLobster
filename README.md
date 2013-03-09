@@ -27,6 +27,7 @@ Features
 * Fuzzy date metadata matching in the posts (using jchronic)
 * Tags (via plugins)
 * Pretty dates (via plugins)
+* Comments via disqus
 
 Running (from the repository)
 =============================
@@ -37,7 +38,7 @@ Running (from the repository)
 
 You also need to have singepages.template and pagination.template (actually optional) template files in your working directory. See the examples in this repository.
 
-Then the HTML output files, single pages and paginated pages, will appear in your output directory.
+Then the HTML output files, single pages and paginated pages, will appear in your output directory. The disqus comments will only work when the files are hosted online.
 
 Specifying the template files
 =============================
@@ -162,7 +163,7 @@ TODO
 Minor: 
 * Specifying leading and ending text for text around paginated number in filename
 * Allow '.', and '..' for the output directory.
-* ### Integrate disqus? 
+* ~~Integrate disqus?~~
 * ~~Plugin: Pretty date~~
 * ~~Plugin: Single post tags~~
 * Plugin: Content abbreviator for index.html posts
