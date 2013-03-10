@@ -8,7 +8,7 @@ A simple static Blog generator for Git-hosted Markdown (plus metadata) files.
 		date: 2013-01-01 01:01:01 +500
 		some-other-metadata: hiya
 		
-		Some Mardown text here
+		Some Markdown text here
 
 It creates single pages, paginated pages and filtered paginated pages - in other words myblogpost.html, index.html and tags_YOURTAG.html.
 
