@@ -182,6 +182,7 @@ Release plan
 1.x
 * Compositing so there's a master template file which would contain either posts or paginated content?
 * Refactor blog parsing code to be less procedural
+* Support YAML metdata to help converting from Octopress?
 
 Plugins:
 * Plugin: Content abbreviator for index.html posts
