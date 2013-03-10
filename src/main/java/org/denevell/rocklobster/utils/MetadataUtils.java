@@ -6,7 +6,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.denevell.rocklobster.entities.BlogPost;
+import org.denevell.rocklobster.blogposts.BlogPost;
 
 public class MetadataUtils {
 

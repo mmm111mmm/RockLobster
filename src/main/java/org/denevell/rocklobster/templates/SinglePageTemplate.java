@@ -1,9 +1,10 @@
-package org.denevell.rocklobster.entities;
+package org.denevell.rocklobster.templates;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.denevell.rocklobster.blogposts.BlogPost;
 import org.denevell.rocklobster.utils.FileUtils;
 
 

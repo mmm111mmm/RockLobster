@@ -1,10 +1,11 @@
-package org.denevell.rocklobster.entities;
+package org.denevell.rocklobster.templates;
 
 import java.io.StringReader;
 import java.io.StringWriter;
 import java.util.List;
 import java.util.Map;
 
+import org.denevell.rocklobster.blogposts.BlogPost;
 import org.denevell.rocklobster.plugins.infrastructure.TemplatePluginsContext;
 import org.denevell.rocklobster.plugins.infrastructure.TemplatePluginsContextImpl;
 

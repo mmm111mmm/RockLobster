@@ -3,7 +3,7 @@ package org.denevell.rocklobster.plugins;
 import java.util.Collections;
 import java.util.List;
 
-import org.denevell.rocklobster.entities.BlogPost;
+import org.denevell.rocklobster.blogposts.BlogPost;
 import org.denevell.rocklobster.plugins.infrastructure.Plugin;
 import org.denevell.rocklobster.utils.MetadataUtils;
 

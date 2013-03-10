@@ -10,7 +10,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
-import org.denevell.rocklobster.entities.BlogPost;
+import org.denevell.rocklobster.blogposts.BlogPost;
 import org.denevell.rocklobster.utils.GitUtils;
 import org.eclipse.jgit.lib.Repository;
 
@@ -105,8 +105,5 @@ public class BlogPostParsing {
 			bp.addMetadata("date",sdf.format(lastModified));
 		} 
 	}
-
-
-
 
 }

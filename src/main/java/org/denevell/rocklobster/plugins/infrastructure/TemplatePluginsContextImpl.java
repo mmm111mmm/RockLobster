@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.denevell.rocklobster.entities.BlogPost;
+import org.denevell.rocklobster.blogposts.BlogPost;
 import org.denevell.rocklobster.utils.ClassUtils;
 
 import com.google.common.base.Function;

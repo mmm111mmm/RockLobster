@@ -1,4 +1,4 @@
-package org.denevell.rocklobster.entities;
+package org.denevell.rocklobster.blogposts;
 import java.util.HashMap;
 
 public class BlogPost {

@@ -1,10 +1,13 @@
-package org.denevell.rocklobster.entities;
+package org.denevell.rocklobster.templates.infrastructure;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.denevell.rocklobster.blogposts.BlogPost;
+import org.denevell.rocklobster.templates.FilteredPaginatedPageTemplate;
+import org.denevell.rocklobster.templates.PageTemplate;
 import org.denevell.rocklobster.utils.FileUtils;
 import org.denevell.rocklobster.utils.MetadataUtils;
 import org.denevell.rocklobster.utils.PaginationUtils;

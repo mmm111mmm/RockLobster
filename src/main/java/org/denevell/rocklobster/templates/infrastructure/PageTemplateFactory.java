@@ -1,9 +1,11 @@
-package org.denevell.rocklobster.entities;
+package org.denevell.rocklobster.templates.infrastructure;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.denevell.rocklobster.blogposts.BlogPost;
+import org.denevell.rocklobster.templates.PageTemplate;
 import org.denevell.rocklobster.utils.ClassUtils;
 
 

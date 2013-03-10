@@ -5,7 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
-import org.denevell.rocklobster.entities.BlogPost;
+import org.denevell.rocklobster.blogposts.BlogPost;
 import org.denevell.rocklobster.plugins.infrastructure.Plugin;
 
 import com.mdimension.jchronic.Chronic;

@@ -4,9 +4,9 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.util.List;
 
-import org.denevell.rocklobster.entities.BlogPost;
-import org.denevell.rocklobster.entities.PageTemplate;
-import org.denevell.rocklobster.entities.PageTemplateFactory;
+import org.denevell.rocklobster.blogposts.BlogPost;
+import org.denevell.rocklobster.templates.PageTemplate;
+import org.denevell.rocklobster.templates.infrastructure.PageTemplateFactory;
 import org.denevell.rocklobster.utils.FileUtils;
 
 

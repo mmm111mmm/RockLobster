@@ -1,7 +1,7 @@
 package org.denevell.rocklobster;
 import java.util.List;
 
-import org.denevell.rocklobster.entities.BlogPost;
+import org.denevell.rocklobster.blogposts.BlogPost;
 import org.pegdown.Extensions;
 import org.pegdown.PegDownProcessor;
 
