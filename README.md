@@ -162,7 +162,7 @@ Release plan
  * ~~Plugin: Pretty date~~
  * ~~Plugin: Single post tags~~
  * Ability to easily add a new plugin
-* ~Log problems especially for problems parsing the date with jchronic, log4j?~
+* ~~Log problems especially for problems parsing the date with jchronic, log4j?~~
 
 0.9
 * Allow '.', and '..' for the output directory.
@@ -179,8 +179,9 @@ Release plan
 * Turn off looking for git repo updates
 * Specifying leading and ending text for text around paginated number in filename
 
-1.1
+1.x
 * Compositing so there's a master template file which would contain either posts or paginated content?
+* Refactor blog parsing code to be less procedural
 
 Plugins:
 * Plugin: Content abbreviator for index.html posts
