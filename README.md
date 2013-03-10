@@ -171,6 +171,8 @@ Release plan
 * Specifying leading and ending text for text around paginated number in filename
 
 1.0
+* Better disqus integration instructions
+* Automatically call binary from github hooks
 * Allow markdown files to be in sub folders
 
 1.1
