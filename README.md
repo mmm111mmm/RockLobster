@@ -162,18 +162,22 @@ Release plan
  * ~~Plugin: Pretty date~~
  * ~~Plugin: Single post tags~~
  * Ability to easily add a new plugin
-* Log problems especially for problems parsing the date with jchronic, log4j?
+* ~Log problems especially for problems parsing the date with jchronic, log4j?~
 
 0.9
 * Allow '.', and '..' for the output directory.
 * Upload to mvnrepository
-* Gradle task to run the jar after compilation
-* Specifying leading and ending text for text around paginated number in filename
+* Automatically call binary from github hooks
+* Better disqus integration instructions
 
 1.0
-* Better disqus integration instructions
-* Automatically call binary from github hooks
+* Themes
+* Gradle task to run the jar after compilation
 * Allow markdown files to be in sub folders
+
+1.0.x
+* Turn off looking for git repo updates
+* Specifying leading and ending text for text around paginated number in filename
 
 1.1
 * Compositing so there's a master template file which would contain either posts or paginated content?

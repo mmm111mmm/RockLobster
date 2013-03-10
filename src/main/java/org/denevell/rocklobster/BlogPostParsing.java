@@ -10,8 +10,10 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Scanner;
 
+import org.apache.log4j.Logger;
 import org.denevell.rocklobster.blogposts.BlogPost;
 import org.denevell.rocklobster.utils.GitUtils;
+import org.denevell.rocklobster.utils.LogUtils;
 import org.eclipse.jgit.lib.Repository;
 
 import com.mdimension.jchronic.Chronic;
@@ -19,6 +21,8 @@ import com.mdimension.jchronic.utils.Span;
 
 
 public class BlogPostParsing {
+	
+	private static Logger LOG = LogUtils.getLog(Main.class);
 	
 	public static List<BlogPost> parseFilesInDirectory(String directory, Repository fileGitRepo) throws Exception {
 		ArrayList<BlogPost> bps = new ArrayList<BlogPost>();
@@ -33,10 +37,13 @@ public class BlogPostParsing {
 				e.printStackTrace();
 			}
 		}
-		// Sort blog posts
 		BlogPost[] sortedArray = bps.toArray(new BlogPost[0]);
-		Arrays.sort(sortedArray, new Comparator<BlogPost>() {
+		sortBlogPostsByDate(sortedArray);
+		return Arrays.asList(sortedArray);
+	}
 
+	private static void sortBlogPostsByDate(BlogPost[] sortedArray) {
+		Arrays.sort(sortedArray, new Comparator<BlogPost>() {
 			@Override
 			public int compare(BlogPost o1, BlogPost o2) {
 				String dateString1 = o1.getMetadata().get("date");
@@ -47,7 +54,12 @@ public class BlogPostParsing {
 				Span blogPostDateSpan2 = Chronic.parse(dateString2);
 				long blogPost1 = (blogPostDateSpan1==null) ? 0 : blogPostDateSpan1.getBegin();
 				long blogPost2 = (blogPostDateSpan2==null) ? 0 : blogPostDateSpan2.getBegin();
-				// TODO: log problems
+				if(blogPost1==0) {
+					LOG.error("Sorting problem: the date on " + o1 + " could not be parsed by jchronic.");
+				}
+				if(blogPost2==0) {
+					LOG.error("Sorting problem: the date on " + o2 + " could not be parsed by jchronic.");
+				}
 				if(blogPost1 == blogPost2) {
 					return 0;
 				} else if(blogPost1 < blogPost2) {
@@ -57,7 +69,6 @@ public class BlogPostParsing {
 				}
 			}
 		});
-		return Arrays.asList(sortedArray);
 	}
 
 	public static BlogPost parseStringIntoPostAndMetadata(File f, Repository fileGitRepo) throws Exception {

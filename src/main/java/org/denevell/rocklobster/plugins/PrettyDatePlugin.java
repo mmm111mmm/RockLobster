@@ -5,13 +5,17 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
+import org.apache.log4j.Logger;
 import org.denevell.rocklobster.blogposts.BlogPost;
 import org.denevell.rocklobster.plugins.infrastructure.Plugin;
+import org.denevell.rocklobster.utils.LogUtils;
 
 import com.mdimension.jchronic.Chronic;
 import com.mdimension.jchronic.utils.Span;
 
 public class PrettyDatePlugin implements Plugin {
+	
+	private Logger LOG = LogUtils.getLog(PrettyDatePlugin.class);
 
 	@Override
 	public String getOuput(List<BlogPost> bps, String[] args) { 
@@ -23,6 +27,7 @@ public class PrettyDatePlugin implements Plugin {
 		
 		Span d = Chronic.parse(date);
 		if(d==null) {
+			LOG.error("The date " + date + " could not be parsed by jchronic.");
 			return date;
 		} else {
 	 		long unixDate = d.getBegin()*1000l;
