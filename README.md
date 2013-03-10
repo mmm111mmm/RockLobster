@@ -142,8 +142,10 @@ This uses the jchronic natural language parsing algorithm to convert text to a d
 
 		Posted: {{#plugins}}pretty-date||{{#attr}}{{date}}{{/attr}}||EEEE d MMMM yyyy, h:ma{{/plugins}}
 
-TODO
+Release plan
 ====
+
+0.8
 * ~~Sort blog posts by git date or metadata date~~
 * ~~Specify blog url from the command line~~
 * ~~Specify where to put the output html post files~~
@@ -154,19 +156,29 @@ TODO
 * ~~Pagination for index.html etc~~
 * ~~Pagination filter based on blog post attributes - category_[metadata.tags].15.pages.template ?~~
 * ~~Turn off pagination when specified as 0 - just set it really high, the first page will be just index.html anyway.~~
+* ~~Integrate disqus?~~
 * ~~Plugins~~
  * ~~Tags plugin~~
+ * ~~Plugin: Pretty date~~
+ * ~~Plugin: Single post tags~~
  * Ability to easily add a new plugin
+* Log problems especially for problems parsing the date with jchronic, log4j?
+
+0.9
+* Allow '.', and '..' for the output directory.
+* Upload to mvnrepository
+* Gradle task to run the jar after compilation
+* Specifying leading and ending text for text around paginated number in filename
+
+1.0
+* Better disqus integration instructions
+* Automatically call binary from github hooks
 * Allow markdown files to be in sub folders
+
+1.1
 * Compositing so there's a master template file which would contain either posts or paginated content?
 
-Minor: 
-* Specifying leading and ending text for text around paginated number in filename
-* Allow '.', and '..' for the output directory.
-* ~~Integrate disqus?~~
-* ~~Plugin: Pretty date~~
-* ~~Plugin: Single post tags~~
+Plugins:
 * Plugin: Content abbreviator for index.html posts
-* Gradle task to run the jar after compilation
-* Log problems especially for problems parsing the date with jchronic, log4j?
 * Sort tags alphabetically in tags plugins
+
