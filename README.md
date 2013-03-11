@@ -20,7 +20,7 @@ Features
 ========
 
 * Automatically fetches posts from your git repository
-* Page pagintion for index.html etc, and filtered paginationed (e.g 'tags_stories.2.html')
+* Page pagintion for index.html etc, and filtered pagination (e.g 'tags_stories.2.html')
 * Manipulate the posts and metdata using the Mustache templating language and plugins.
 * Automatically adds dates as the git commit date, unless 'date' metadata exists
 * Fuzzy date metadata matching in the posts (using jchronic)
@@ -182,7 +182,7 @@ Release plan
 1.x
 * Compositing so there's a master template file which would contain either posts or paginated content?
 * Refactor blog parsing code to be less procedural
-* Support YAML metdata to help converting from Octopress?
+* Support YAML metdata to help converting from Jekyll?
 
 Plugins:
 * Plugin: Content abbreviator for index.html posts
