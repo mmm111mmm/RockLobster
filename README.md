@@ -3,6 +3,8 @@ RockLobster
 
 A simple static Blog generator for Git-hosted Markdown (plus metadata) files.
 
+It takes files like:
+
 		tags: random, story
 		title: And here's a story about... being free
 		date: 2013-01-01 01:01:01 +500
@@ -10,9 +12,7 @@ A simple static Blog generator for Git-hosted Markdown (plus metadata) files.
 		
 		Some Markdown text here
 
-It creates single pages, paginated pages and filtered paginated pages - in other words myblogpost.html, index.html and tags_YOURTAG.html.
-
-It allows you to use the metadata in posts, paginated posts and plugins.
+And creates pages like myblogpost.html, index.html and tags_YOURTAG.html.
 
 More functionality is supported through plugins.
 
@@ -20,14 +20,14 @@ Features
 ========
 
 * Automatically fetches posts from your git repository
-* Page pagintion for index.html etc.
-* Filtered paginated pages based on metadata (i.e. a paginated page for all your tags, e.g 'tags_stories.html')
+* Page pagintion for index.html etc, and filtered paginationed (e.g 'tags_stories.2.html')
+* Manipulate the posts and metdata using the Mustache templating language and plugins.
 * Automatically adds dates as the git commit date, unless 'date' metadata exists
-* Manipulate the posts and metdata using the Mustache templating language
 * Fuzzy date metadata matching in the posts (using jchronic)
-* Tags (via plugins)
-* Pretty dates (via plugins)
-* Comments via disqus
+* Comments via disqus (edit the JS in the template files)
+* Plugins:
+ * Tags (via plugins)
+ * Pretty dates (via plugins)
 
 Running (from the repository)
 =============================
