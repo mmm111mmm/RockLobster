@@ -3,7 +3,6 @@ package org.denevell.rocklobster.plugins.infrastructure;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import org.denevell.rocklobster.blogposts.BlogPost;
 import org.denevell.rocklobster.utils.ClassUtils;
@@ -19,7 +18,7 @@ public class TemplatePluginsContextImpl implements TemplatePluginsContext {
 		mAllBlogposts = unfilteredBlogposts;
 		mPluginsHash = new HashMap<String, Plugin>();
 		try {
-			Set<Class<Plugin>> classes = ClassUtils.getClassesInPackage("org.denevell.rocklobster.plugins", Plugin.class);
+			List<Class<Plugin>> classes = ClassUtils.getClassesInPackage("org.denevell.rocklobster.plugins", Plugin.class);
 			for (Class<Plugin> pl: classes) {
 				Plugin inst = pl.newInstance();
 				mPluginsHash.put(inst.getName(), inst);
