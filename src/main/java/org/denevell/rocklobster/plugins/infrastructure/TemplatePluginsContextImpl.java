@@ -18,7 +18,7 @@ public class TemplatePluginsContextImpl implements TemplatePluginsContext {
 		mAllBlogposts = unfilteredBlogposts;
 		mPluginsHash = new HashMap<String, Plugin>();
 		try {
-			List<Class<Plugin>> classes = ClassUtils.getClassesInPackage("org.denevell.rocklobster.plugins", Plugin.class);
+			List<Class<Plugin>> classes = ClassUtils.getClassesIncludingDirecory("org.denevell.rocklobster.plugins",  Plugin.class, "plugins/");
 			for (Class<Plugin> pl: classes) {
 				Plugin inst = pl.newInstance();
 				mPluginsHash.put(inst.getName(), inst);
@@ -36,7 +36,8 @@ public class TemplatePluginsContextImpl implements TemplatePluginsContext {
 			public String apply(String input) {
 				String[] split = input.split("\\|\\|", 2);
 				String pluginName = split[0];
-				String pluginArgs = split[1];
+				String pluginArgs = "";
+				if(split.length>1) pluginArgs = split[1];
 				Plugin plugin = mPluginsHash.get(pluginName);
 				if(plugin==null) {
 					return "Plugin not found";

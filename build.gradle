@@ -9,6 +9,7 @@ dependencies {
 	compile 'com.github.spullara.mustache.java:compiler:0.8.10'
 	compile 'org.pegdown:pegdown:1.2.1'
 	compile 'org.eclipse.jgit:org.eclipse.jgit:2.2.0.201212191850-r'
+	compile 'commons-io:commons-io:2.4'
 	compile 'org.reflections:reflections:0.9.8'
 	compile 'com.rubiconproject.oss:jchronic:0.2.6'
 	compile 'log4j:log4j:1.2.17'

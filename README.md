@@ -161,7 +161,7 @@ Release plan
  * ~~Tags plugin~~
  * ~~Plugin: Pretty date~~
  * ~~Plugin: Single post tags~~
- * Ability to easily add a new plugin
+ * ~~Ability to easily add a new plugin~~
 * ~~Log problems especially for problems parsing the date with jchronic, log4j?~~
 
 0.9
@@ -174,6 +174,7 @@ Release plan
 * Themes
 * Gradle task to run the jar after compilation
 * Allow markdown files to be in sub folders
+* Instructions (plus dev package?) for plugin development.
 
 1.0.x
 * Turn off looking for git repo updates

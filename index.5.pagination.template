@@ -33,5 +33,6 @@
 				{{#previous_page_relative_url}}<a href="{{previous_page_relative_url}}">Previous</a>{{/previous_page_relative_url}}
 			</div>
 		</div>
+        <span style="display: none">{{#plugins}}example-plugin{{/plugins}}</span>
 	</body>
 </html>

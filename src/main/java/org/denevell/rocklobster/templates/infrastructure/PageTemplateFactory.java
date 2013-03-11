@@ -13,7 +13,7 @@ public abstract class PageTemplateFactory {
 	public static List<PageTemplateFactory> getFactories() {
 		List<PageTemplateFactory> factories = new ArrayList<PageTemplateFactory>();
 		try {
-			List<Class<PageTemplateFactory>> classes = ClassUtils.getClassesInPackage("org.denevell.rocklobster.entities", PageTemplateFactory.class);
+			List<Class<PageTemplateFactory>> classes = ClassUtils.getClasses("org.denevell.rocklobster.templates", PageTemplateFactory.class);
 			for (Class<PageTemplateFactory> factoryClass: classes) {
 				PageTemplateFactory inst = factoryClass.newInstance();
 				factories.add(inst);
