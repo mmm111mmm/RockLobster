@@ -42,6 +42,7 @@ public class ClassUtils {
 	private static <T extends Class>List<T> setClassesFromDirectory(String directory, T typeOfClass) throws Exception {
 		ArrayList<T> allClasses = new ArrayList<T>();
 		File file = new File(directory);
+		if(!file.exists()) return allClasses;
 		// Get class loader
 		URL url = file.toURI().toURL(); 
 		URL[] urls = new URL[]{url};

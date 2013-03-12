@@ -46,6 +46,9 @@ public class BlogPost {
 		 */
 		public String getBasefilename() {
 			String[] strs = new StringBuffer(getFilename()).reverse().toString().split("\\.", 2);
+			if(strs.length!=2) {
+				return "error";
+			}
 			return new StringBuffer(strs[1]).reverse().toString();
 		}
 

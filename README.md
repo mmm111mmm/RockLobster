@@ -20,8 +20,9 @@ Features
 ========
 
 * Automatically fetches posts from your git repository
+* Automatically updates your blog (via git hooks)
 * Page pagintion for index.html etc, and filtered pagination (e.g 'tags_stories.2.html')
-* Manipulate the posts and metdata using the Mustache templating language and plugins.
+* Manipulate the posts and metadata using the Mustache templating language and plugins.
 * Automatically adds dates as the git commit date, unless 'date' metadata exists
 * Fuzzy date metadata matching in the posts (using jchronic)
 * Comments via disqus (edit the JS in the template files)
@@ -32,13 +33,12 @@ Features
 Running (from the repository)
 =============================
 
-
 1. Install gradle (apt-get install gradle, homebrew install gradle or http://www.gradle.org/installation).
 2. gradle clean build
 3. Create the rock.lobster configuration file:
-	
-		git_repo   = git@github.com:denevell/BlogPosts.git
-		output_dir = somedirectory/ 
+       
+               git_repo   = https://github.com/denevell/BlogPosts.git
+               output_dir = somedirectory/ 
 
 4. java -jar build/libs/RockLobster.jar 
 
@@ -148,6 +148,22 @@ This uses the jchronic natural language parsing algorithm to convert text to a d
 
 		Posted: {{#plugins}}pretty-date||{{#attr}}{{date}}{{/attr}}||EEEE d MMMM yyyy, h:ma{{/plugins}}
 
+Automatic publishing
+====
+
+If you setup your web server to run the Java jar file as a cgi binary, then you can use git hooks to automatically recreate your blog on each new commit.
+
+1. Setup your HTTPD server to accept cgi binary files. (See [this](http://httpd.apache.org/docs/2.2/howto/cgi.html) for apache)
+2. Place the jar file with (the 'rock.lobster' configuration file and the template files) in a directory and create a **executable** shell script in the same directory:
+
+		#!/bin/sh
+		
+		JAVA="/usr/bin/java"
+		$JAVA -jar RockLobster.jar
+
+3. Ensure this directory has write permissions for the HTTPD user (www-data in Debian's case).
+4. Create a git hook on the location of your markdown repository to call this binary.  	
+
 Release plan
 ====
 
@@ -173,8 +189,9 @@ Release plan
 0.9
 * ~~Allow '.', and '..' for the output directory.~~
 * Upload to mvnrepository
-* Automatically call binary from github hooks
+* ~~Automatically call binary from github hooks~~
 * Better disqus integration instructions
+* Only parse .md files -- configurable
 
 1.0
 * Themes
