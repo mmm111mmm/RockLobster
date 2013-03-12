@@ -1,5 +1,3 @@
-~toc~
-
 RockLobster
 ===========
 
@@ -170,6 +168,13 @@ If you setup your web server to run the Java jar file as a cgi binary, then you 
 3. Ensure this directory has write permissions for the HTTPD user (www-data in Debian's case).
 4. Create a git hook on the location of your markdown repository to call this binary.  	
 
+Disqus comments
+===
+
+There is example disqus javascript in singlepage.template. You must change the 'disqus_shortname' variable to your registered disqus account.
+
+Alternatively remove all that disqus javascript and start afresh using [these](http://disqus.com/admin/universalcode/) instructions.
+
 Release plan
 ====
 
@@ -194,16 +199,17 @@ Release plan
 
 0.9
 * ~~Allow '.', and '..' for the output directory.~~
-* Upload to mvnrepository
 * ~~Automatically call binary from github hooks~~
-* Better disqus integration instructions
+* ~~Better disqus integration instructions~~
+* Instructions (plus dev package?) for plugin development.
+ * Upload to mvnrepository?
 * Only parse .md files -- configurable
+* Gradle task to run the jar after compilation
 
 1.0
-* Themes
-* Gradle task to run the jar after compilation
 * Allow markdown files to be in sub folders
-* Instructions (plus dev package?) for plugin development.
+* Themes
+* Create a bundle of jar file, configuration file, themes
 
 1.0.x
 * Turn off looking for git repo updates
@@ -213,6 +219,7 @@ Release plan
 * Compositing so there's a master template file which would contain either posts or paginated content?
 * Refactor blog parsing code to be less procedural
 * Support YAML metdata to help converting from Jekyll?
+* Better configuration file error reporting
 
 Plugins:
 * Plugin: Content abbreviator for index.html posts
