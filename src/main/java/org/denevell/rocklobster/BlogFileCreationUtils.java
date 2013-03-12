@@ -19,6 +19,7 @@ public class BlogFileCreationUtils {
 			// Output them to the fs
 			for (PageTemplate fileTemplate : templates) {
 				String filename = fileTemplate.getPostProcessedFilename();
+				if(!Main.sOutputDir.endsWith("/")) Main.sOutputDir+="/";
 				FileUtils.createDir(Main.sOutputDir);
 				PrintWriter pw = new PrintWriter(Main.sOutputDir + filename);
 				pw.print(fileTemplate.getContent());
