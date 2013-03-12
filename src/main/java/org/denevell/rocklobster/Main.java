@@ -1,6 +1,10 @@
 package org.denevell.rocklobster;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
+import java.util.Properties;
 
 import org.apache.log4j.Logger;
 import org.denevell.rocklobster.blogposts.BlogPost;
@@ -19,15 +23,13 @@ public class Main {
 	public static String sOutputDir = "";
 
 	public static void main(String[] s) throws Exception {
-		if(s.length<2) { 
-			System.err.println("Please provide repository url and output dir.");
-			return;
-		}
 		// Set up vars
-		URL_REMOTE_REPO = s[0];
-		sOutputDir = s[1];
+		Properties defaultProps = getProperties();		
+		URL_REMOTE_REPO = defaultProps.getProperty("git_repo");
+		sOutputDir = defaultProps.getProperty("output_dir");
+		// Blog it up
 		String absolutePath = new File(DIR_LOCAL_REPO).getAbsolutePath(); // For location of files
-		FileRepository fileGitRepo = new FileRepository(absolutePath+"/.git"); // To refereces our git repo
+		FileRepository fileGitRepo = new FileRepository(absolutePath+"/.git"); // To reference our git repo
 		LOG.info("## Cloning (or pulling existing) git repo");
 		GitUtils.cloneOrPullExistingRepository(URL_REMOTE_REPO, fileGitRepo); 
 		LOG.info("## Parsing blog files");
@@ -36,6 +38,14 @@ public class Main {
 		BlogMarkdownUtils.convertMDToHTML(bps);
 		LOG.info("## Creating single and paginated pages from factories onto filesystem");
 		BlogFileCreationUtils.createPosts(bps, PageTemplateFactory.getFactories());
+	}
+
+	private static Properties getProperties() throws FileNotFoundException, IOException {
+		Properties defaultProps = new Properties();
+		FileInputStream in = new FileInputStream("rock.lobster");
+		defaultProps.load(in);
+		in.close();
+		return defaultProps;
 	}
 	
 }

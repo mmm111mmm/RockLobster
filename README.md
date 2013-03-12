@@ -32,9 +32,15 @@ Features
 Running (from the repository)
 =============================
 
+
 1. Install gradle (apt-get install gradle, homebrew install gradle or http://www.gradle.org/installation).
 2. gradle clean build
-3. java -jar build/libs/RockLobster.jar "git@github.com:denevell/BlogPosts.git" "outputDir/"
+3. Create the rock.lobster configuration file:
+	
+		git_repo   = git@github.com:denevell/BlogPosts.git
+		output_dir = somedirectory/ 
+
+4. java -jar build/libs/RockLobster.jar 
 
 You also need to have singepages.template and pagination.template (actually optional) template files in your working directory. See the examples in this repository.
 
