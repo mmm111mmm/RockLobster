@@ -165,7 +165,7 @@ Release plan
 * ~~Log problems especially for problems parsing the date with jchronic, log4j?~~
 
 0.9
-* Allow '.', and '..' for the output directory.
+* ~~Allow '.', and '..' for the output directory.~~
 * Upload to mvnrepository
 * Automatically call binary from github hooks
 * Better disqus integration instructions
