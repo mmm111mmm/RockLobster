@@ -1,3 +1,5 @@
+~toc~
+
 RockLobster
 ===========
 
@@ -12,7 +14,11 @@ It takes files like:
 		
 		Some Markdown text here
 
-And creates pages like myblogpost.html, index.html and tags_YOURTAG.html.
+And creates pages like
+
+		myblogpost.html, index.html, tags_YOURTAG.html, tags_YOURTAG.2.html, etc.
+
+automatically via Git hooks.
 
 More functionality is supported through plugins.
 
