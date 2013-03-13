@@ -27,7 +27,7 @@ Features
 * Automatically updates your blog (via git hooks)
 * Page pagintion for index.html etc, and filtered pagination (e.g 'tags_stories.2.html')
 * Manipulate the posts and metadata using the Mustache templating language and plugins.
-* Automatically adds dates as the git commit date, unless 'date' metadata exists
+* Automatically adds dates as the last git commit date, unless 'date' metadata exists
 * Fuzzy date metadata matching in the posts (using jchronic)
 * Comments via disqus (edit the JS in the template files)
 * Plugins:
@@ -204,7 +204,7 @@ Release plan
 * Instructions (plus dev package?) for plugin development.
  * Upload to mvnrepository?
 * Only parse .md files -- configurable
-* Gradle task to run the jar after compilation
+* ~~Gradle task to run the jar after compilation~~
 
 1.0
 * Allow markdown files to be in sub folders
@@ -213,13 +213,14 @@ Release plan
 
 1.0.x
 * Turn off looking for git repo updates
+* Better configuration file error reporting
 * Specifying leading and ending text for text around paginated number in filename
+* Allow git commit date to be the first commit data, not the latest
 
 1.x
 * Compositing so there's a master template file which would contain either posts or paginated content?
 * Refactor blog parsing code to be less procedural
 * Support YAML metdata to help converting from Jekyll?
-* Better configuration file error reporting
 
 Plugins:
 * Plugin: Content abbreviator for index.html posts
