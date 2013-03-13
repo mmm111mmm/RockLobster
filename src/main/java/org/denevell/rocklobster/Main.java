@@ -33,7 +33,7 @@ public class Main {
 		LOG.info("## Cloning (or pulling existing) git repo");
 		GitUtils.cloneOrPullExistingRepository(URL_REMOTE_REPO, fileGitRepo); 
 		LOG.info("## Parsing blog files");
-		List<BlogPost> bps = BlogPostParsing.parseFilesInDirectory(absolutePath, fileGitRepo);
+		List<BlogPost> bps = new BlogPostParsing(fileGitRepo).parseFilesInDirectory(absolutePath);
 		LOG.info("## Converting blog files from markdown");
 		BlogMarkdownUtils.convertMDToHTML(bps);
 		LOG.info("## Creating single and paginated pages from factories onto filesystem");

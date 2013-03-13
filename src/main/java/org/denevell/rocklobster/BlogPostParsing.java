@@ -23,15 +23,24 @@ import com.mdimension.jchronic.utils.Span;
 public class BlogPostParsing {
 	
 	private static Logger LOG = LogUtils.getLog(Main.class);
+	private Repository mGitRepo;
 	
-	public static List<BlogPost> parseFilesInDirectory(String directory, Repository fileGitRepo) throws Exception {
+	/**
+	 * 
+	 * @param gitRepo Used to add meta data from git commits
+	 */
+	public BlogPostParsing(Repository gitRepo) {
+		mGitRepo = gitRepo;
+	}
+	
+	public List<BlogPost> parseFilesInDirectory(String directory) throws Exception {
 		ArrayList<BlogPost> bps = new ArrayList<BlogPost>();
 		File[] files = new File(directory).listFiles();
 		for (File f: files) {
 			if(!f.isFile()) continue;
 			BlogPost bp;
 			try {
-				bp = parseStringIntoPostAndMetadata(f, fileGitRepo);
+				bp = parseStringIntoPostAndMetadata(f);
 				bps.add(bp);
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
@@ -42,7 +51,7 @@ public class BlogPostParsing {
 		return Arrays.asList(sortedArray);
 	}
 
-	private static void sortBlogPostsByDate(BlogPost[] sortedArray) {
+	private void sortBlogPostsByDate(BlogPost[] sortedArray) {
 		Arrays.sort(sortedArray, new Comparator<BlogPost>() {
 			@Override
 			public int compare(BlogPost o1, BlogPost o2) {
@@ -71,7 +80,7 @@ public class BlogPostParsing {
 		});
 	}
 
-	public static BlogPost parseStringIntoPostAndMetadata(File f, Repository fileGitRepo) throws Exception {
+	private BlogPost parseStringIntoPostAndMetadata(File f) throws Exception {
 		Scanner in = new Scanner(new FileReader(f.getAbsoluteFile()));
 		BlogPost bp = new BlogPost();
 		boolean endOfMetadata = false;
@@ -88,13 +97,13 @@ public class BlogPostParsing {
 			}
 		}
 		// Manually add Title and date if doesn't exist
-		addMissingMetadata(f, bp, fileGitRepo);
+		addMissingMetadata(f, bp);
 		bp.setPost(str);
 		bp.setFilename(f.getName());
 		return bp;
 	}
 
-	private static void addMissingMetadata(File f, BlogPost bp, Repository fileGitRepo) throws Exception {
+	private void addMissingMetadata(File f, BlogPost bp) throws Exception {
 		String name2 = f.getName();
 		if(!bp.getMetadata().containsKey("title")) {
 			String name = name2;
@@ -108,7 +117,7 @@ public class BlogPostParsing {
 		if(!bp.getMetadata().containsKey("date")) {
 			long lastModified = f.lastModified();
 			try {
-				lastModified = GitUtils.getFirstCommitDataForFile(fileGitRepo, name2);
+				lastModified = GitUtils.getFirstCommitDataForFile(mGitRepo, name2);
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
