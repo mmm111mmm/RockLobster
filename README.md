@@ -40,8 +40,10 @@ Running (from the repository)
 1. Install gradle (apt-get install gradle, homebrew install gradle or http://www.gradle.org/installation).
 2. Create the rock.lobster configuration file:
        
-               git_repo   = https://github.com/denevell/BlogPosts.git
-               output_dir = somedirectory/ 
+               git_repo    = https://github.com/denevell/BlogPosts.git
+               output_dir  = somedirectory/ 
+               # optional
+               file_suffix = .md
 
 3. gradle clean runJar
 
@@ -203,7 +205,7 @@ Release plan
 * ~~Gradle task to run the jar after compilation~~
 * Instructions (plus dev package?) for plugin development.
  * Upload to mvnrepository?
-* Only parse .md files -- configurable
+* ~~Only parse .md files -- configurable~~
 
 1.0
 * Allow markdown files to be in sub folders

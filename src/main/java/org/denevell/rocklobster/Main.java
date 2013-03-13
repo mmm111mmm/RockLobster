@@ -20,13 +20,12 @@ public class Main {
 	private static Logger LOG = LogUtils.getLog(Main.class);
 	private static  String URL_REMOTE_REPO; //i.e "git@github.com:denevell/BlogPosts.git";
 	private static final String DIR_LOCAL_REPO = "git-repo";
-	public static String sOutputDir = "";
+	public static String CONTENT_FILE_SUFFIX = ".md";
+	public static String OUTPUT_DIR = "";
 
 	public static void main(String[] s) throws Exception {
 		// Set up vars
-		Properties defaultProps = getProperties();		
-		URL_REMOTE_REPO = defaultProps.getProperty("git_repo");
-		sOutputDir = defaultProps.getProperty("output_dir");
+		parseConfigProperties();		
 		// Blog it up
 		String absolutePath = new File(DIR_LOCAL_REPO).getAbsolutePath(); // For location of files
 		FileRepository fileGitRepo = new FileRepository(absolutePath+"/.git"); // To reference our git repo
@@ -40,11 +39,15 @@ public class Main {
 		BlogFileCreationUtils.createPosts(bps, PageTemplateFactory.getFactories());
 	}
 
-	private static Properties getProperties() throws FileNotFoundException, IOException {
+	private static Properties parseConfigProperties() throws FileNotFoundException, IOException {
 		Properties defaultProps = new Properties();
 		FileInputStream in = new FileInputStream("rock.lobster");
 		defaultProps.load(in);
 		in.close();
+		URL_REMOTE_REPO = defaultProps.getProperty("git_repo");
+		OUTPUT_DIR = defaultProps.getProperty("output_dir");
+		String suffix = defaultProps.getProperty("file_suffix");
+		CONTENT_FILE_SUFFIX= (suffix!=null) ? suffix.trim() : CONTENT_FILE_SUFFIX;
 		return defaultProps;
 	}
 	

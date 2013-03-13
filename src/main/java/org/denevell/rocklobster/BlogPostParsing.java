@@ -37,7 +37,7 @@ public class BlogPostParsing {
 		ArrayList<BlogPost> bps = new ArrayList<BlogPost>();
 		File[] files = new File(directory).listFiles();
 		for (File f: files) {
-			if(!f.isFile()) continue;
+			if(!f.isFile() || !f.getName().endsWith(Main.CONTENT_FILE_SUFFIX)) continue;
 			BlogPost bp;
 			try {
 				bp = parseStringIntoPostAndMetadata(f);
@@ -86,7 +86,7 @@ public class BlogPostParsing {
 		boolean endOfMetadata = false;
 		String str = "", t = "";
 		while(in.hasNext() && (t=in.nextLine())!=null) {
-			if(t.equals("") && !endOfMetadata) endOfMetadata = true;
+			if((t.equals("") && !endOfMetadata) || (!endOfMetadata && !t.contains(":"))) endOfMetadata = true;
 			else if(!endOfMetadata){
 				String[] matadata = t.split(":", 2);
 				String key = matadata[0].toLowerCase();

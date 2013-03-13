@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import org.denevell.rocklobster.Main;
 import org.denevell.rocklobster.blogposts.BlogPost;
 import org.denevell.rocklobster.utils.FileUtils;
 
@@ -50,7 +51,7 @@ public class SinglePageTemplate extends PageTemplate {
 
 	@Override
 	public String getPostProcessedFilename() {
-		String filename = mBp.getFilename().replace(".md", ".html");
+		String filename = mBp.getFilename().replace(Main.CONTENT_FILE_SUFFIX, ".html");
 		return filename;
 	}
 

@@ -30,9 +30,13 @@ public class MetadataUtils {
 	
 	private static List<String> getSplitMetadataOfKey(String metadataKey, BlogPost blogPost) {
 		String values = blogPost.getMetadata().get(metadataKey);
-		String[] split = values.split("[\\ ,|]");
-		List<String> splitList = Arrays.asList(split);
-		return splitList;
+		if(values==null) {
+			return new ArrayList<String>();
+		} else {
+			String[] split = values.split("[\\ ,|]");
+			List<String> splitList = Arrays.asList(split);
+			return splitList;
+		}
 	}		
 	
 }
