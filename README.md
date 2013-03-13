@@ -38,13 +38,12 @@ Running (from the repository)
 =============================
 
 1. Install gradle (apt-get install gradle, homebrew install gradle or http://www.gradle.org/installation).
-2. gradle clean build
-3. Create the rock.lobster configuration file:
+2. Create the rock.lobster configuration file:
        
                git_repo   = https://github.com/denevell/BlogPosts.git
                output_dir = somedirectory/ 
 
-4. java -jar build/libs/RockLobster.jar 
+3. gradle clean runJar
 
 You also need to have singepages.template and pagination.template (actually optional) template files in your working directory. See the examples in this repository.
 
@@ -201,10 +200,10 @@ Release plan
 * ~~Allow '.', and '..' for the output directory.~~
 * ~~Automatically call binary from github hooks~~
 * ~~Better disqus integration instructions~~
+* ~~Gradle task to run the jar after compilation~~
 * Instructions (plus dev package?) for plugin development.
  * Upload to mvnrepository?
 * Only parse .md files -- configurable
-* ~~Gradle task to run the jar after compilation~~
 
 1.0
 * Allow markdown files to be in sub folders

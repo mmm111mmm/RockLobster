@@ -30,3 +30,8 @@ task copyToLib(type: Copy) {
     from configurations.compile
     into "${buildDir}/libs"
 }
+
+task runJar(dependsOn:jar) << {
+  javaexec { main="-jar"; args jar.archivePath } 
+  //ant.java(jar: jar.archivePath ,fork:true)
+}
