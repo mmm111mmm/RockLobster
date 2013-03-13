@@ -31,8 +31,8 @@ Features
 * Fuzzy date metadata matching in the posts (using jchronic)
 * Comments via disqus (edit the JS in the template files)
 * Plugins:
- * Tags (via plugins)
- * Pretty dates (via plugins)
+ * Tags (for single post and entire blog)
+ * Pretty dates
 
 Running (from the repository)
 =============================
