@@ -5,6 +5,9 @@
 		</title>
 	</head>
 	<body>
+		<div class="home-link">
+			<a href="index.html">home.</a>
+		<div>
 		<div class="blog-title">
 			{{#attr}}{{title}}{{/attr}}
 		<div>
