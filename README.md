@@ -205,6 +205,7 @@ Release plan
 * ~~Gradle task to run the jar after compilation~~
 * Instructions (plus dev package?) for plugin development.
  * Upload to mvnrepository?
+* Specify directory containing css etc files for the output directory
 * ~~Only parse .md files -- configurable~~
 
 1.0
