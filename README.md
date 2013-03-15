@@ -205,7 +205,7 @@ Release plan
 * ~~Gradle task to run the jar after compilation~~
 * Instructions (plus dev package?) for plugin development.
  * Upload to mvnrepository?
-* Specify directory containing css etc files for the output directory
+* ~~Specify directory containing css etc files for the output directory~~
 * ~~Only parse .md files -- configurable~~
 
 1.0
@@ -229,3 +229,5 @@ Plugins:
 * Plugin: Content abbreviator for index.html posts
 * Sort tags alphabetically in tags plugins
 
+Templates:
+* RSS

@@ -1,0 +1,46 @@
+<html>
+	<head>
+		<title>
+			Tech blog, innit | Tagged: {{metadata_filter}} !
+		</title>
+                <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                <link href="resources/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+                <link href="resources/custom.css" rel="stylesheet" media="screen">
+	</head>
+	<body class="category-page">
+                <h1 class="home-link">
+                        <a href="index.html">home.</a>
+                </h1>
+		<hr />
+		<h1>Tagged: {{metadata_filter}}</h1>
+		<hr />
+		<div class="blog-posts">
+			{{#posts}}
+			<div class="blog-posts-entry">
+				<h3 class="blog-posts-entry-title">
+                                        <a href="{{basefilename}}.html">
+                                                {{#metadata}}{{& title}}{{/metadata}}
+                                        </a>
+				</h3>
+				<div class="blog-posts-entry-post">
+					{{& post}}
+				</div>
+                                {{#plugins}}single-page-tags||{{#metadata}}{{tags}}{{/metadata}}||<span>||</span>||<a class="label" href="category_[tagname].html">||</a>|| {{/plugins}}
+
+			</div>
+			<hr />
+			{{/posts}}
+			<div class="blog-posts-pagination-info">
+				Page {{num_pages_current}} of {{num_pages_total}}
+			</div>
+			<span class="blog-posts-pagination-info-previous">
+				{{#previous_page_relative_url}}<a class="btn" href="{{previous_page_relative_url}}">Previous</a>{{/previous_page_relative_url}}
+			</span>
+			<span class="blog-posts-pagination-info-next">
+				{{#next_page_relative_url}}<a class="btn btn-primary" href="{{next_page_relative_url}}">Next</a>{{/next_page_relative_url}} 
+			</span >
+		</div>
+        <!-- <script src="http://code.jquery.com/jquery.js"></script> -->
+        <!-- <script src="resources/bootstrap/js/bootstrap.min.js"></script> -->
+	</body>
+</html>
