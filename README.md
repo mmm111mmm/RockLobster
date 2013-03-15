@@ -212,6 +212,7 @@ Release plan
 * Allow markdown files to be in sub folders
 * Themes
 * Create a bundle of jar file, configuration file, themes
+ * Gradle zip task
 * Find out why unicode characters in the .template files are munged when parsed
 
 1.0.x
