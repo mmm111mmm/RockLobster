@@ -215,6 +215,7 @@ Release plan
 * ~~Specify directory containing css etc files for the output directory~~
 * ~~Only parse .md files -- configurable~~
 * Version number
+* Analytics
 
 1.0
 * Allow markdown files to be in sub folders
