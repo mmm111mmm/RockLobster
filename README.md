@@ -51,6 +51,13 @@ You also need to have singepages.template and pagination.template (actually opti
 
 Then the HTML output files, single pages and paginated pages, will appear in your output directory. The disqus comments will only work when the files are hosted online.
 
+Running (from the packaged jar)
+=============================
+
+Once you've done the above, you can run 'gradle zip' to make a packaged version of the jar, resources, config file and template files.
+
+You can then distribute this and simply run 'java -jar RockLobster.jar' to create your blog.
+
 Specifying the template files
 =============================
 
@@ -207,12 +214,13 @@ Release plan
  * Upload to mvnrepository?
 * ~~Specify directory containing css etc files for the output directory~~
 * ~~Only parse .md files -- configurable~~
+* Version number
 
 1.0
 * Allow markdown files to be in sub folders
 * Themes
-* Create a bundle of jar file, configuration file, themes
- * Gradle zip task
+* ~~Create a bundle of jar file, configuration file, themes~~
+ * ~~Gradle zip task~~
 * Find out why unicode characters in the .template files are munged when parsed
 
 1.0.x
