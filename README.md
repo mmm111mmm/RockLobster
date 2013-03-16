@@ -30,6 +30,7 @@ Features
 * Automatically adds dates as the last git commit date, unless 'date' metadata exists
 * Fuzzy date metadata matching in the posts (using jchronic)
 * Comments via disqus (edit the JS in the template files)
+* Includes Bootstrap
 * Plugins:
  * Tags (for single post and entire blog)
  * Pretty dates
@@ -104,6 +105,13 @@ Filtered paginated page template
 In the case where you have [tags] in the filename, and you have blogpost metadata which contains the tags 'stuff' and 'blar', you'd generated 'SOMENAME_stuff.html' and 'SOMENAME_blar.html'. 
 
 And in the templates {{metadata_filter}} would refer to 'stuff' and 'blar' respectively.
+
+Resources
+=======
+
+All the files you place in resources/ will be places in YOUR-OUTPUT-DIR/resources/.
+
+Bootstap is included.
 
 Plugins
 =======
