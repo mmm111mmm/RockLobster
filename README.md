@@ -252,3 +252,4 @@ Plugins:
 
 Templates:
 * RSS
+* Sitemap
