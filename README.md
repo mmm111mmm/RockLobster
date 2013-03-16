@@ -20,6 +20,8 @@ automatically via Git hooks.
 
 More functionality is supported through plugins.
 
+It is currently running: http://blog.denevell.org/
+
 Features
 ========
 
