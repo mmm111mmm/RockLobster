@@ -31,6 +31,7 @@ Features
 * Fuzzy date metadata matching in the posts (using jchronic)
 * Comments via disqus (edit the JS in the template files)
 * Includes Bootstrap
+* Google Analytics - just add your account id in the javascript in the default template.
 * Plugins:
  * Tags (for single post and entire blog)
  * Pretty dates
@@ -223,7 +224,7 @@ Release plan
 * ~~Specify directory containing css etc files for the output directory~~
 * ~~Only parse .md files -- configurable~~
 * Version number
-* Analytics
+* ~~Analytics~~
 
 1.0
 * Allow markdown files to be in sub folders
