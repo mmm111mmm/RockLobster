@@ -30,8 +30,8 @@ Features
 * Automatically adds dates as the last git commit date, unless 'date' metadata exists
 * Fuzzy date metadata matching in the posts (using jchronic)
 * Comments via disqus (edit the JS in the template files)
+* Google Analytics - add your account id in the default template.
 * Includes Bootstrap
-* Google Analytics - just add your account id in the javascript in the default template.
 * Plugins:
  * Tags (for single post and entire blog)
  * Pretty dates
