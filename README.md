@@ -30,6 +30,7 @@ Features
 * Automatically adds dates as the last git commit date, unless 'date' metadata exists
 * Fuzzy date metadata matching in the posts (using jchronic)
 * Comments via disqus (edit the JS in the template files)
+* Includes Bootstrap
 * Plugins:
  * Tags (for single post and entire blog)
  * Pretty dates
@@ -56,7 +57,7 @@ Running (from the packaged jar)
 
 Once you've done the above, you can run 'gradle zip' to make a packaged version of the jar, resources, config file and template files.
 
-You can then distribute this and simply run 'java -jar RockLobster.jar' to create your blog.
+You can then distribute this and simply run 'java -jar build/libs/RockLobster.jar' to create your blog.
 
 Specifying the template files
 =============================
@@ -104,6 +105,13 @@ Filtered paginated page template
 In the case where you have [tags] in the filename, and you have blogpost metadata which contains the tags 'stuff' and 'blar', you'd generated 'SOMENAME_stuff.html' and 'SOMENAME_blar.html'. 
 
 And in the templates {{metadata_filter}} would refer to 'stuff' and 'blar' respectively.
+
+Resources
+=======
+
+All the files you place in resources/ will be places in YOUR-OUTPUT-DIR/resources/.
+
+Bootstap is included.
 
 Plugins
 =======
@@ -215,6 +223,7 @@ Release plan
 * ~~Specify directory containing css etc files for the output directory~~
 * ~~Only parse .md files -- configurable~~
 * Version number
+* Analytics
 
 1.0
 * Allow markdown files to be in sub folders
