@@ -56,7 +56,7 @@ Running (from the packaged jar)
 
 Once you've done the above, you can run 'gradle zip' to make a packaged version of the jar, resources, config file and template files.
 
-You can then distribute this and simply run 'java -jar RockLobster.jar' to create your blog.
+You can then distribute this and simply run 'java -jar build/libs/RockLobster.jar' to create your blog.
 
 Specifying the template files
 =============================
