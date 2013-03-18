@@ -3,6 +3,7 @@ package org.denevell.rocklobster.templates;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.lang.StringBuffer;
 
 import org.denevell.rocklobster.Main;
 import org.denevell.rocklobster.blogposts.BlogPost;
@@ -13,6 +14,7 @@ public class SinglePageTemplate extends PageTemplate {
 	
 	private BlogPost mBp;
 	private String mPageTemplateString;
+	private String mTemplateSuffix;
 	
 	/**
 	 * @param bp
@@ -21,10 +23,11 @@ public class SinglePageTemplate extends PageTemplate {
 	 * But the other factories do exciting, exotic things, for various values of exotic.
 	 * @param pageTemplateFile
 	 */
-	public SinglePageTemplate(List<BlogPost> allBlogposts, BlogPost bp, String pageTemplateFile) {
+	public SinglePageTemplate(List<BlogPost> allBlogposts, BlogPost bp, String pageTemplateFile, String fileSuffix) {
 		super(allBlogposts);
 		mBp = bp;
 		mPageTemplateString = FileUtils.getStringFromRegexFile(pageTemplateFile);
+		mTemplateSuffix = fileSuffix;
 		if(mPageTemplateString==null) throw new RuntimeException("No singlepages.template file found in CWD.");
 	}
 
@@ -51,7 +54,7 @@ public class SinglePageTemplate extends PageTemplate {
 
 	@Override
 	public String getPostProcessedFilename() {
-		String filename = mBp.getFilename().replace(Main.CONTENT_FILE_SUFFIX, ".html");
+		String filename = mBp.getFilename().replace(Main.CONTENT_FILE_SUFFIX, "." + mTemplateSuffix); 
 		return filename;
 	}
 
