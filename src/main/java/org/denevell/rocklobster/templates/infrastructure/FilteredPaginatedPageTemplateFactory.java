@@ -23,7 +23,7 @@ public class FilteredPaginatedPageTemplateFactory extends PageTemplateFactory {
 	public List<PageTemplate> generatePages(List<BlogPost> bps) {
 		mUnfilteredBlogposts = bps;
 		ArrayList<PageTemplate> fileTemplates = new ArrayList<PageTemplate>();
-		File[] pagesTemplate = FileUtils.getFilesInDirectory(new File("."), ".*\\[.*\\]\\.\\d+\\.pagination.template");
+		File[] pagesTemplate = FileUtils.getFilesInDirectory(new File("."), ".*\\[.*\\]\\.\\d+\\.pagination.template.*");
 		// Create a filtered pagination filter for each file found
 		for (File templateFile: pagesTemplate) {
 			// Filter posts by meta data value

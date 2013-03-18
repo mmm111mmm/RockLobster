@@ -34,6 +34,7 @@ Features
 * Comments via disqus (edit the JS in the template files)
 * Google Analytics - add your account id in the default template.
 * Includes Bootstrap
+* Includes sitemap template
 * Plugins:
  * Tags (for single post and entire blog)
  * Pretty dates
@@ -51,7 +52,7 @@ Running (from the repository)
 
 3. gradle clean runJar
 
-You also need to have singepages.template and pagination.template (actually optional) template files in your working directory. See the examples in this repository.
+You also need to have singepages.template and pagination.template.your_suffix (actually optional) template files in your working directory. See the examples in this repository.
 
 Then the HTML output files, single pages and paginated pages, will appear in your output directory. The disqus comments will only work when the files are hosted online.
 
@@ -70,18 +71,20 @@ There are example templates in the repository.
 Single page template
 --------------------
 
-**'singlepages.template'** - Required file.
+**'singlepages.template.YOUR_SUFFIX'** - Required file.
 
 The template file uses the Mustache templating syntax. See the example file in this repository. Here is a sample template where you access the title metadata in your markdown file and the post content:
 
         	{{basefilename}} // I.e. If you markdown file was sup.md it would be 'sup'.
         	{{#attr}}{{title}}{{/attr}}
         	{{& post}}
+
+The YOUR_SUFFIX part will normally be .html, but you can change this.
             
 Paginated page template
 -----------------------
 
-**'SOMENAME.10.pagination.template'** - The number refers to how many post per page.
+**'SOMENAME.10.pagination.template.YOUR_SUFFIX'** - The number refers to how many post per page.
 
 It will create a paginated page for all your posts with 10 pages on each page. This also includes metadata pertaining the pagination (see the example). Within your template file, your Mustache syntax will look like:
 
@@ -100,14 +103,18 @@ It will create a paginated page for all your posts with 10 pages on each page. T
 
 With the {{#posts}} {{/posts}} block you can put in everything you put in the single page template above.
 
+The YOUR_SUFFIX part will normally be .html, but you can change this.
+
 Filtered paginated page template
 --------------------------------
 
-**'SOMENAME_[metadata-key].10.pagination.template'** - This creates multiple paginated pages. [metadata-key] related to all the values of that metadata key.
+**'SOMENAME_[metadata-key].10.pagination.template.YOUR_SUFFIX'** - This creates multiple paginated pages. [metadata-key] related to all the values of that metadata key.
 
 In the case where you have [tags] in the filename, and you have blogpost metadata which contains the tags 'stuff' and 'blar', you'd generated 'SOMENAME_stuff.html' and 'SOMENAME_blar.html'. 
 
 And in the templates {{metadata_filter}} would refer to 'stuff' and 'blar' respectively.
+
+The YOUR_SUFFIX part will normally be .html, but you can change this.
 
 Resources
 =======
@@ -115,6 +122,13 @@ Resources
 All the files you place in resources/ will be places in YOUR-OUTPUT-DIR/resources/.
 
 Bootstap is included.
+
+Sitemap
+=======
+
+See the sample sitemap.500.pagination.template.xml for an example template file that will generate your sitemap.
+
+The 500.pagination part is so we'll get all the posts (unless you have more than 500) in the template.
 
 Plugins
 =======
@@ -227,6 +241,11 @@ Release plan
 * ~~Only parse .md files -- configurable~~
 * Version number
 * ~~Analytics~~
+* ~~Sitemap~~
+ * ~~Ability to make change a .template file to whatever you want~~
+ * ~~Add the base url to rock.lobster - just edit the sitemap.500.template.xml template file~~
+* ~~Specify output postfix, currently .html~~
+* RSS template
 
 1.0
 * Allow markdown files to be in sub folders
@@ -237,7 +256,7 @@ Release plan
 
 1.0.x
 * Turn off looking for git repo updates
-* Better configuration file error reporting
+* Better configuration-file / template names error reporting
 * Specifying leading and ending text for text around paginated number in filename
 * Allow git commit date to be the first commit data, not the latest
 
@@ -249,7 +268,3 @@ Release plan
 Plugins:
 * Plugin: Content abbreviator for index.html posts
 * Sort tags alphabetically in tags plugins
-
-Templates:
-* RSS
-* Sitemap

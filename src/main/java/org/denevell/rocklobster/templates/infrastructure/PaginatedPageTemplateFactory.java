@@ -16,7 +16,7 @@ public class PaginatedPageTemplateFactory extends PageTemplateFactory {
 	private File[] mPagesTemplates;
 
 	public PaginatedPageTemplateFactory() {
-		mPagesTemplates = FileUtils.getFilesInDirectory(new File("."), ".*[^\\]]\\.\\d+\\.pagination.template");
+		mPagesTemplates = FileUtils.getFilesInDirectory(new File("."), ".*[^\\]]\\.\\d+\\.pagination.template.*");
 	}
 	
 	public List<PageTemplate> generatePages(List<BlogPost> bps) {

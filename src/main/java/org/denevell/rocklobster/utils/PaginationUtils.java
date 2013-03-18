@@ -9,7 +9,7 @@ import org.denevell.rocklobster.blogposts.BlogPost;
 public class PaginationUtils {
 	
 	public static int getPaginationNumberFromFilename(String fileName) {
-		Pattern p = Pattern.compile(".*\\.(\\d+)\\.pagination.template");
+		Pattern p = Pattern.compile(".*\\.(\\d+)\\.pagination.template.*");
 		Matcher m = p.matcher(fileName);
 		m.matches();
 		String num = m.group(1);

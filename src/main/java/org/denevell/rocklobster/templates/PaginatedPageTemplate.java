@@ -62,7 +62,7 @@ public class PaginatedPageTemplate extends PageTemplate {
 		if(currentPage!=1) {
 			urlPageNumText = PAGINATION_URL_LEADING_TEXT + String.valueOf(currentPage) + PAGINATION_URL_ENDING_TEXT;
 		}
-		return relativeFileName.replaceFirst("\\.\\d+\\.pagination\\.template", urlPageNumText+".html");
+		return relativeFileName.replaceFirst("\\.\\d+\\.pagination\\.template", urlPageNumText);
 	}	
 
 }

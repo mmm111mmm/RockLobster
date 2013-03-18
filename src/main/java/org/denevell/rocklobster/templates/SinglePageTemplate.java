@@ -24,7 +24,7 @@ public class SinglePageTemplate extends PageTemplate {
 	public SinglePageTemplate(List<BlogPost> allBlogposts, BlogPost bp, String pageTemplateFile) {
 		super(allBlogposts);
 		mBp = bp;
-		mPageTemplateString = FileUtils.getStringFromFile(pageTemplateFile);
+		mPageTemplateString = FileUtils.getStringFromRegexFile(pageTemplateFile);
 		if(mPageTemplateString==null) throw new RuntimeException("No singlepages.template file found in CWD.");
 	}
 
