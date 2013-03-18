@@ -14,7 +14,7 @@ It takes files like:
 
 And creates pages like
 
-		myblogpost.html, index.html, tags_YOURTAG.html, tags_YOURTAG.2.html, etc.
+		myblogpost.html, index.html, tags_YOURTAG.html, tags_YOURTAG.2.html, sitemap.xml, etc.
 
 automatically via Git hooks.
 
