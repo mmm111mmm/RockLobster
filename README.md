@@ -34,7 +34,8 @@ Features
 * Comments via disqus (edit the JS in the template files)
 * Google Analytics - add your account id in the default template.
 * Includes Bootstrap
-* Includes sitemap template
+* Sitemap support
+* RSS (Really Atom) support 
 * Plugins:
  * Tags (for single post and entire blog)
  * Pretty dates
@@ -127,6 +128,13 @@ Sitemap
 =======
 
 See the sample sitemap.500.pagination.template.xml for an example template file that will generate your sitemap.
+
+The 500.pagination part is so we'll get all the posts (unless you have more than 500) in the template.
+
+RSS / (Really Atom)
+=======
+
+See the sample atom.500.pagination.template.xml for an example template file that will generate your feed.
 
 The 500.pagination part is so we'll get all the posts (unless you have more than 500) in the template.
 
@@ -245,7 +253,7 @@ Release plan
  * ~~Ability to make change a .template file to whatever you want~~
  * ~~Add the base url to rock.lobster - just edit the sitemap.500.template.xml template file~~
 * ~~Specify output postfix, currently .html~~
-* RSS template
+* ~~RSS template~~
 
 1.0
 * Allow markdown files to be in sub folders
@@ -264,6 +272,7 @@ Release plan
 * Compositing so there's a master template file which would contain either posts or paginated content?
 * Refactor blog parsing code to be less procedural
 * Support YAML metdata to help converting from Jekyll?
+* Allow user to specify values in the config file that they can access in the templates
 
 Plugins:
 * Plugin: Content abbreviator for index.html posts
