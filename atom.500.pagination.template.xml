@@ -1,0 +1,31 @@
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>
+		<![CDATA[ Denevell tech blog, innit. ]]>
+	</title>
+	<link href="http://blog.denevell.org/atom.xml" rel="self"/>
+	<link href="http://blog.denevell.org/"/>
+	<updated>{{#plugins}}pretty-date||today||yyyy-MM-dd'T'h:m:ss.SZ{{/plugins}}</updated>
+	<id>http://blog.denevell.org/</id>
+	<author>
+		<name>
+			<![CDATA[ Denevell ]]>
+		</name>
+	</author>
+	<generator uri="http://github.com/denevell/RockLobster/">RockLobster</generator>
+
+        {{#posts}}
+	<entry>
+		<link href="http://blog.denevell.org/{{& basefilename}}.html"/>
+		<id>http://blog.denevell.org/{{& basefilename}}.html</id>
+		<title type="html">
+			<![CDATA[ {{#metadata}}{{& title}}{{/metadata}} ]]>
+		</title>
+		<content type="html">
+			<![CDATA[ {{& post}} ]]>
+		</content>
+		<updated>
+			{{#plugins}}pretty-date||{{#metadata}}{{& date}}{{/metadata}}||yyyy-MM-dd'T'h:m:ss.SZ{{/plugins}}
+		</updated>
+	</entry>
+        {{/posts}}
+</feed>
