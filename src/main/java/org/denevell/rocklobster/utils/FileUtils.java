@@ -37,12 +37,6 @@ public class FileUtils {
 		}
 	}	
 
-	public static String getStringFromRegexFile (String fileLocation) {
-		File[] files = getFilesInDirectory(new File("."), fileLocation);
-		File f = files[0];
-		return getStringFromFile(f.getName());
-	}	
-	
 	public static File[] getFilesInDirectory(File f, String regex) {
 		final Pattern p = Pattern.compile(regex);
 		File[] pagesTemplates = f.listFiles(new FileFilter() {
