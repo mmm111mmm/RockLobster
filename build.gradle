@@ -41,6 +41,6 @@ task zip(type: Zip) {
     include 'resources/**/*'
     include 'README.md'
     include 'rock.lobster'
-    include '*.template'
+    include '*.template.*'
     include 'build/libs/RockLobster.jar'
 }
