@@ -260,6 +260,7 @@ Release plan
 * Themes
 * ~~Create a bundle of jar file, configuration file, themes~~
  * ~~Gradle zip task~~
+* Upload a bundle to github with version number
 * Find out why unicode characters in the .template files are munged when parsed
 
 1.0.x
