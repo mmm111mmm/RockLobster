@@ -2,12 +2,15 @@ package org.denevell.rocklobster.plugins;
 
 import java.util.Collections;
 import java.util.List;
+import java.lang.Math;
 
 import org.denevell.rocklobster.blogposts.BlogPost;
 import org.denevell.rocklobster.plugins.infrastructure.Plugin;
 import org.denevell.rocklobster.utils.MetadataUtils;
 
 public class AllTagsPlugin implements Plugin {
+
+	private static int MAX_OCCURRENCES = 40; // TODO: Pass in as arguments to plugin
 
 	@Override
 	public String getOuput(List<BlogPost> bps, String[] args) { 
@@ -25,8 +28,7 @@ public class AllTagsPlugin implements Plugin {
 		for (String tag : tags) {
 			if(tag==null || tag.length()==0) continue;
 			String elementStartReplaced = elementStart.replaceAll("\\[tagname\\]", tag);
-			elementStartReplaced = elementStartReplaced.replaceAll("\\[occurrences\\]", 
-					getOccurrences(tagsIncDuplicated, tag, addingToOcurrences));
+			elementStartReplaced = elementStartReplaced.replaceAll("\\[occurrences\\]", getOccurrences(tagsIncDuplicated, tag, addingToOcurrences, MAX_OCCURRENCES));
 			String inbetweenElement = "";
 			if(totalTagsOutput.length()!=0) {
 				inbetweenElement=elementInBetween;
@@ -36,8 +38,10 @@ public class AllTagsPlugin implements Plugin {
 		return wrapperStart+totalTagsOutput+wrapperEnd;
 	}
 
-	private String getOccurrences(List<String> obs, String o, int addition) {
-		return String.valueOf(Collections.frequency(obs, o)+addition);
+	private String getOccurrences(List<String> obs, String o, int addition, int max) {
+		int num = Collections.frequency(obs, o);
+		num = Math.min(num, max);
+		return String.valueOf(num+addition);
 	}
 
 	@Override
