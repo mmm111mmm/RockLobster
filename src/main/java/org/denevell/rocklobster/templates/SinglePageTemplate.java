@@ -45,10 +45,11 @@ public class SinglePageTemplate extends PageTemplate {
 
 	@Override
 	public Map<String, Object> getTemplateScopes() {
-		    Map<String, Object> scopes = super.getTemplateScopes();
-		    BlogPost blogPost = getBlogPosts().get(0);
-			scopes.put("post", blogPost.getPost());
-		    scopes.put("attr", blogPost.getMetadata());
+		Map<String, Object> scopes = super.getTemplateScopes();
+		BlogPost blogPost = getBlogPosts().get(0);
+		scopes.put("post", blogPost.getPost());
+		scopes.put("basefilename", blogPost.getBasefilename());
+		scopes.put("attr", blogPost.getMetadata());
 		return scopes;
 	}
 
